@@ -49,8 +49,8 @@ Madison residents, and save their favorite seasonal finds to a personal profile.
 
 ### Design
 
-*[Screen Design](ScreenDesign.md)
-*[User Stories](UserStories.md)
+* [Screen Design](ScreenDesign.md)
+* [User Stories](UserStories.md)
 
 ### [Project Plan](ProjectPlan.md)
 
