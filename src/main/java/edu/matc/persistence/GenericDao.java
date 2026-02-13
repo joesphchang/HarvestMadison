@@ -1,4 +1,4 @@
 package edu.matc.persistence;
 
-public class BaseDao {
+public class GenericDao {
 }
