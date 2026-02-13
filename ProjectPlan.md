@@ -21,8 +21,8 @@ Week 3: Requirements & Tech Stack
 Week 4: The Data Layer (Current Week)
 Goal: Establish the "Seasonality Engine" database and Hibernate connection.
 
-[ ] Database Design: Create a schema that links local Wisconsin harvest dates to generic ingredients.
-[ ] Create Ingredient and User tables in the local MySQL database.
+[X] Database Design: Create a schema that links local Wisconsin harvest dates to generic ingredients.
+[X] Create Ingredient and User tables in the local MySQL database.
 [x] Hibernate Setup: Create the hibernate.cfg.xml and database.properties.
 [ ] Entity Mapping: Create POJOs with Hibernate annotations for Ingredient and User.
 [ ] DAO Implementation: Create IngredientDao with a method to getIngredientsByMonth(int month).
