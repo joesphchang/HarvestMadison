@@ -3,7 +3,7 @@
 
 ### Home 
 
-![home page](wireframes/home.png)
+![home page](wireframes/Home.png)
 
 ### Sign Up
 
