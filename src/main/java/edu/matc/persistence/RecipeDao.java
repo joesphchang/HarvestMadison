@@ -13,78 +13,80 @@ import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
 import java.util.List;
 
+
 /**
  * The type Recipe dao.
  */
 public class RecipeDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
-    /**
-     * The Session factory.
-     */
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
+
     /**
-     * Get order by id
+     * Gets by id.
      *
      * @param id the id
      * @return the by id
      */
     public Recipe getById(int id) {
         Session session = sessionFactory.openSession();
-        Recipe order = session.get( Recipe.class, id );
+        Recipe recipe = session.get( Recipe.class, id );
         session.close();
-        return order;
+        return recipe;
     }
 
+
     /**
-     * update order
+     * Update.
      *
-     * @param order Recipe to be updated
+     * @param recipe the recipe
      */
-    public void update(Recipe order) {
+    public void update(Recipe recipe) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.merge(order);
+        session.merge(recipe);
         transaction.commit();
         session.close();
     }
 
+
     /**
-     * insert a new order
+     * Insert int.
      *
-     * @param order Recipe to be inserted
+     * @param recipe the recipe
      * @return the int
      */
-    public int insert(Recipe order) {
+    public int insert(Recipe recipe) {
         int id = 0;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.persist(order);
+        session.persist(recipe);
         transaction.commit();
-        id = order.getId();
+        id = recipe.getId();
         session.close();
         return id;
     }
 
+
     /**
-     * Delete a order
+     * Delete.
      *
-     * @param order Recipe to be deleted
+     * @param recipe the recipe
      */
-    public void delete(Recipe order) {
+    public void delete(Recipe recipe) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.remove(order);
+        session.remove(recipe);
         transaction.commit();
         session.close();
     }
 
 
     /**
-     * Return a list of all orders
+     * Gets all.
      *
-     * @return All orders
+     * @return the all
      */
     public List<Recipe> getAll() {
 
@@ -93,17 +95,17 @@ public class RecipeDao {
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Recipe> query = builder.createQuery(Recipe.class);
         Root<Recipe> root = query.from(Recipe.class);
-        List<Recipe> orders = session.createSelectionQuery( query ).getResultList();
+        List<Recipe> recipes = session.createSelectionQuery( query ).getResultList();
 
-        logger.debug("The list of orders " + orders);
+        logger.debug("The list of recipes " + recipes);
         session.close();
 
-        return orders;
+        return recipes;
     }
 
+
     /**
-     * Get order by property (exact match)
-     * sample usage: getByPropertyEqual("lastname", "Curry")
+     * Gets by property equal.
      *
      * @param propertyName the property name
      * @param value        the value
@@ -118,15 +120,15 @@ public class RecipeDao {
         CriteriaQuery<Recipe> query = builder.createQuery(Recipe.class);
         Root<Recipe> root = query.from(Recipe.class);
         query.select(root).where(builder.equal(root.get(propertyName), value));
-        List<Recipe> orders = session.createSelectionQuery( query ).getResultList();
+        List<Recipe> recipes = session.createSelectionQuery( query ).getResultList();
 
         session.close();
-        return orders;
+        return recipes;
     }
 
+
     /**
-     * Get order by property (like)
-     * sample usage: getByPropertyLike("lastname", "C")
+     * Gets by property like.
      *
      * @param propertyName the property name
      * @param value        the value
@@ -135,7 +137,7 @@ public class RecipeDao {
     public List<Recipe> getByPropertyLike(String propertyName, String value) {
         Session session = sessionFactory.openSession();
 
-        logger.debug("Searching for order with {} = {}",  propertyName, value);
+        logger.debug("Searching for recipe with {} = {}",  propertyName, value);
 
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Recipe> query = builder.createQuery(Recipe.class);
@@ -144,8 +146,8 @@ public class RecipeDao {
 
         query.where(builder.like(propertyPath, "%" + value + "%"));
 
-        List<Recipe> orders = session.createQuery( query ).getResultList();
+        List<Recipe> recipes = session.createQuery( query ).getResultList();
         session.close();
-        return orders;
+        return recipes;
     }
 }
