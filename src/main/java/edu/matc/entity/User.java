@@ -6,11 +6,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 /**
  * The type User.
  */
-@Entity
+@Entity(name = "User")
 @Table(name = "user")
 public class User {
 
@@ -31,16 +32,65 @@ public class User {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-//    private List<Recipe> recipes = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Recipe> recipes = new ArrayList<>();
 
-
+    /**
+     * Instantiates a new User.
+     */
     public User() {}
 
+    /**
+     * Instantiates a new User.
+     *
+     * @param firstName the first name
+     * @param lastName  the last name
+     * @param userName  the user name
+     */
     public User(String firstName, String lastName, String userName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
+    }
+
+    /**
+     * Add recipe.
+     *
+     * @param recipe the recipe
+     */
+    public void addRecipe(Recipe recipe) {
+        recipes.add(recipe);
+        recipe.setUser(this);
+    }
+
+
+    /**
+     * Remove recipe.
+     *
+     * @param recipe the recipe
+     */
+    public void removeRecipe(Recipe recipe) {
+        recipes.remove(recipe);
+        recipe.setUser(null);
+    }
+
+
+    /**
+     * Gets recipes.
+     *
+     * @return the recipes
+     */
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    /**
+     * Sets recipes.
+     *
+     * @param recipes the recipes
+     */
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
     /**

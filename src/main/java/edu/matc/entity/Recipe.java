@@ -23,6 +23,15 @@ public class Recipe {
     @Column(name = "created_on")
     private int createdOn;
 
+    @Column(name = "ingredients_text")
+    private String ingredientsText;
+
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private SeasonalIngredient seasonalIngredient;
+
     /**
      * Instantiates a new Recipe.
      */
@@ -32,14 +41,16 @@ public class Recipe {
     /**
      * Instantiates a new Recipe.
      *
-     * @param id          the id
-     * @param recipeName  the recipe name
-     * @param description the description
+     * @param id              the id
+     * @param recipeName      the recipe name
+     * @param description     the description
+     * @param ingredientsText the ingredients text
      */
-    public Recipe(int id, String recipeName, String description) {
+    public Recipe(int id, String recipeName, String description, String ingredientsText) {
         this.id = id;
         this.recipeName = recipeName;
         this.description = description;
+        this.ingredientsText = ingredientsText;
     }
 
     /**
@@ -114,6 +125,60 @@ public class Recipe {
         this.id = id;
     }
 
+    /**
+     * Gets ingredients text.
+     *
+     * @return the ingredients text
+     */
+    public String getIngredientsText() {
+        return ingredientsText;
+    }
+
+    /**
+     * Sets ingredients text.
+     *
+     * @param ingredientsText the ingredients text
+     */
+    public void setIngredientsText(String ingredientsText) {
+        this.ingredientsText = ingredientsText;
+    }
+
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
+     * Gets seasonal ingredient.
+     *
+     * @return the seasonal ingredient
+     */
+    public SeasonalIngredient getSeasonalIngredient() {
+        return seasonalIngredient;
+    }
+
+    /**
+     * Sets seasonal ingredient.
+     *
+     * @param seasonalIngredient the seasonal ingredient
+     */
+    public void setSeasonalIngredient(SeasonalIngredient seasonalIngredient) {
+        this.seasonalIngredient = seasonalIngredient;
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -121,6 +186,7 @@ public class Recipe {
                 ", recipeName='" + recipeName + '\'' +
                 ", description='" + description + '\'' +
                 ", createdOn=" + createdOn +
+                ", ingredientsText='" + ingredientsText + '\'' +
                 '}';
     }
 }
