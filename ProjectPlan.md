@@ -19,13 +19,14 @@
     - [x] Create ingredient, recipe, user, and seasonal_ingredient tables in local MySQL
     - [x] Hibernate Setup: Create hibernate.cfg.xml and database.properties
     - [x] Implement Log4j2 for all error handling and status logging
-    - [ ] Note: Ensure your POJO entity mapping and UserDao unit tests are finalized as you transition into Week 5.
+    - [X] Note: Ensure your POJO entity mapping and UserDao unit tests are finalized as you transition into Week 5.
 
-### Week 5 - API Integration & Service Layer (Current Week)
-    - [ ] Set up a GenericDao to reduce code duplication for future entities.
-    - [ ] Create SpoonacularService class to handle HTTP requests and Jackson JSON parsing.
-    - [ ] Integrity Logic: Write the Java method that fetches the hardcoded month from your DB and queries the API for matching recipes.
-    - [ ] Create JUnit tests for SpoonacularService using mocked API responses.
+### Week 5 - Create GenericDao & Junit Test for full Users and Recipes
+    - [X] Set up a GenericDao to reduce code duplication for future entities.
+    - [X] Set up Java Beans and intergate it with GenericDao. 
+    - [X] Set up a way for Seasonal Ingredients to show up for current month.
+    - [X] Create Sample Database to test with.
+    - [ ] Create JUnit tests to set Users, Recipes and Seasonal Ingredients. 
     - [ ] Update weekly reflection/time log.
 
 ### Week 6 - Controllers & Dynamic Display
