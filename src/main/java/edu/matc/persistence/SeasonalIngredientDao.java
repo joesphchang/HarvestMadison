@@ -9,6 +9,6 @@ public class SeasonalIngredientDao extends GenericDao<SeasonalIngredient> {
     }
 
     public SeasonalIngredient getIngredientByMonth(int month) {
-
+        return null;
     }
 }
