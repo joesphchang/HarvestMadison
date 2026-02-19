@@ -22,7 +22,6 @@ public class GenericDao<T> {
     private final Class<T> type;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-
     /**
      * Instantiates a new Generic dao.
      *
@@ -86,6 +85,7 @@ public class GenericDao<T> {
         Transaction transaction = null;
         try (Session session = getSession()) {
             transaction = session.beginTransaction();
+            logger.debug("Inserting new entity: {}", entity.getClass().getSimpleName());
             session.persist(entity);
             transaction.commit();
         } catch (Exception exception) {

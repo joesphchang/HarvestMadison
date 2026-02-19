@@ -2,6 +2,7 @@ package edu.matc.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import java.sql.Timestamp;
 
 /**
  * The type Recipe.
@@ -20,8 +21,8 @@ public class Recipe {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "created_on")
-    private int createdOn;
+    @Column(name = "created_on", insertable = false, updatable = false)
+    private Timestamp createdOn;
 
     @Column(name = "ingredients_text")
     private String ingredientsText;
@@ -53,21 +54,11 @@ public class Recipe {
         this.ingredientsText = ingredientsText;
     }
 
-    /**
-     * Gets created on.
-     *
-     * @return the created on
-     */
-    public int getCreatedOn() {
+    public Timestamp getCreatedOn() {
         return createdOn;
     }
 
-    /**
-     * Sets created on.
-     *
-     * @param createdOn the created on
-     */
-    public void setCreatedOn(int createdOn) {
+    public void setCreatedOn(Timestamp createdOn) {
         this.createdOn = createdOn;
     }
 
