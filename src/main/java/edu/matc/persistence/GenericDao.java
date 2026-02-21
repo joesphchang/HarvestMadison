@@ -88,7 +88,6 @@ public class GenericDao<T> {
         int id = 0;
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
-        // TODO we are using a deprecated method here, is there a better way?
         id = (int)session.save(entity);
         transaction.commit();
         session.close();

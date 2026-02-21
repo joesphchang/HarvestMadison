@@ -13,16 +13,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RecipeDaoTest {
 
-    GenericDao<Recipe> recipeDao;
     GenericDao<User> userDao;
-    GenericDao<SeasonalIngredient> ingredientDao;
+    GenericDao<Recipe> recipeDao;
+    GenericDao<SeasonalIngredient> seasonalIngredientDao;
 
     @BeforeEach
     void setUp() {
-        Database.getInstance().runSQL("cleanDB.sql");
-        recipeDao = new GenericDao<>(Recipe.class);
+        Database database = Database.getInstance();
+        database.runSQL("cleanDB.sql");
         userDao = new GenericDao<>(User.class);
-        ingredientDao = new GenericDao<>(SeasonalIngredient.class);
+        recipeDao = new GenericDao<>(Recipe.class);
+        seasonalIngredientDao = new GenericDao<>(SeasonalIngredient.class);
     }
 
     @Test
