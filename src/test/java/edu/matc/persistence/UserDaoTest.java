@@ -40,7 +40,11 @@ public class UserDaoTest {
 
    @Test
    void insertUserSuccess() {
-
+        User userToInsert = new User("Liam", "Pullian", "lpullian");
+        int insertedUserId = userDao.insert(userToInsert);
+        assertNotEquals(0, insertedUserId);
+        User insertedUser = (User)userDao.getById(insertedUserId);
+        assertEquals("Liam", insertedUser.getFirstName());
    }
 
 }
