@@ -6,8 +6,9 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://localhost:3306/harvest_madison_test</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <property name="connection.username">harvestmadison</property>
+        <property name="connection.username">harvest_madison</property>
         <property name="connection.password">madison</property>
 
         <property name="hibernate.c3p0.min_size">5</property>

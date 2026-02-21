@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `recipe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `recipe` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `recipe_name` varchar(255) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `created_on` timestamp NULL DEFAULT NULL,
-  `ingredients_text` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `recipe_seasonal_ingredient_id_fk` FOREIGN KEY (`id`) REFERENCES `seasonal_ingredient` (`id`),
-  CONSTRAINT `recipe_user_id_fk` FOREIGN KEY (`id`) REFERENCES `user` (`id`)
+                          `id` int NOT NULL AUTO_INCREMENT,
+                          `recipe_name` varchar(255) NOT NULL,
+                          `description` varchar(255) DEFAULT NULL,
+                          `created_on` timestamp NULL DEFAULT NULL,
+                          `ingredients_text` varchar(1000) DEFAULT NULL,
+                          PRIMARY KEY (`id`),
+                          CONSTRAINT `recipe_seasonal_ingredient_id_fk` FOREIGN KEY (`id`) REFERENCES `seasonal_ingredient` (`id`),
+                          CONSTRAINT `recipe_user_id_fk` FOREIGN KEY (`id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,11 +51,11 @@ DROP TABLE IF EXISTS `seasonal_ingredient`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `seasonal_ingredient` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `s_ingredient_name` varchar(255) DEFAULT NULL,
-  `start_date` int DEFAULT NULL,
-  `end_date` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                                       `id` int NOT NULL AUTO_INCREMENT,
+                                       `s_ingredient_name` varchar(255) DEFAULT NULL,
+                                       `start_date` int DEFAULT NULL,
+                                       `end_date` int DEFAULT NULL,
+                                       PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -77,13 +77,13 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(150) DEFAULT NULL,
-  `last_name` varchar(150) DEFAULT NULL,
-  `user_name` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `date_of_birth` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                        `id` int NOT NULL AUTO_INCREMENT,
+                        `first_name` varchar(150) DEFAULT NULL,
+                        `last_name` varchar(150) DEFAULT NULL,
+                        `user_name` varchar(255) DEFAULT NULL,
+                        `password` varchar(255) DEFAULT NULL,
+                        `date_of_birth` date DEFAULT NULL,
+                        PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -105,13 +105,13 @@ DROP TABLE IF EXISTS `user_recipe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_recipe` (
-  `user_id` int DEFAULT NULL,
-  `recipe_id` int DEFAULT NULL,
-  `favorite` tinyint(1) DEFAULT NULL,
-  KEY `recipe_id_fk` (`recipe_id`),
-  KEY `user_recipe_user_id_fk` (`user_id`),
-  CONSTRAINT `recipe_id_fk` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`),
-  CONSTRAINT `user_recipe_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+                               `user_id` int DEFAULT NULL,
+                               `recipe_id` int DEFAULT NULL,
+                               `favorite` tinyint(1) DEFAULT NULL,
+                               KEY `recipe_id_fk` (`recipe_id`),
+                               KEY `user_recipe_user_id_fk` (`user_id`),
+                               CONSTRAINT `recipe_id_fk` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`),
+                               CONSTRAINT `user_recipe_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

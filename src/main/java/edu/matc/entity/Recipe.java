@@ -31,6 +31,7 @@ public class Recipe {
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "seasonal_ingredient_id")
     private SeasonalIngredient seasonalIngredient;
 
     /**

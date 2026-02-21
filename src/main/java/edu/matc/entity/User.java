@@ -15,7 +15,7 @@ import java.util.*;
 @Table(name = "user")
 public class User {
 
-    @Column(name = "first_Name")
+    @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")
