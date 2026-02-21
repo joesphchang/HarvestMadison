@@ -28,7 +28,10 @@ public class RecipeDaoTest {
 
     @Test
     void getRecipeByIdSuccess() {
-
+        Recipe retrievedRecipe = (Recipe)recipeDao.getById(1);
+        assertNotNull(retrievedRecipe);
+        assertEquals("Beet Salad", retrievedRecipe.getRecipeName());
+        assertEquals(1, retrievedRecipe.getUser().getId());
     }
 
     @Test
@@ -58,7 +61,8 @@ public class RecipeDaoTest {
 
     @Test
     void getAllRecipes() {
-
+        List<Recipe> recipes = recipeDao.getAll();
+        assertEquals(10, recipes.size());
     }
 
     @Test

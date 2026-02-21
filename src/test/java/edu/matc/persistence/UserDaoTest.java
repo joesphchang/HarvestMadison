@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserDaoTest {
 
-    GenericDao userDao;
+    GenericDao<User> userDao;
 
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
         database.runSQL("cleanDB.sql");
-        userDao = new GenericDao(User.class);
+        userDao = new GenericDao<>(User.class);
     }
 
     @Test
