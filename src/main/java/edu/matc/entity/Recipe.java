@@ -28,6 +28,7 @@ public class Recipe {
     private String ingredientsText;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne

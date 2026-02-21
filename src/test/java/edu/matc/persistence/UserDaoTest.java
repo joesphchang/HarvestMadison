@@ -1,6 +1,5 @@
 package edu.matc.persistence;
 
-import edu.matc.entity.Recipe;
 import edu.matc.entity.User;
 import edu.matc.util.Database;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,4 +46,22 @@ public class UserDaoTest {
         assertEquals("Liam", insertedUser.getFirstName());
    }
 
+    @Test
+    void deleteUser() {
+        userDao.delete(userDao.getById(3));
+        assertNull(userDao.getById(3));
+    }
+
+    @Test
+    void getAllUsers() {
+        List<User> users = userDao.getAll();
+        assertEquals(6, users.size());
+    }
+
+    @Test
+    void getByPropertyEqual() {
+        List<User> users = userDao.findByPropertyEqual("lastName", "Baker");
+        assertEquals(1, users.size());
+        assertEquals(3, users.get(0).getId());
+    }
 }
