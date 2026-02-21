@@ -45,7 +45,7 @@ public class Recipe {
      * Instantiates a new Recipe.
      *
      * @param id              the id
-     * @param recipeName      the recipe name
+     * @param recipeName      the recipe namestruc
      * @param description     the description
      * @param ingredientsText the ingredients text
      */

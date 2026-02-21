@@ -60,3 +60,16 @@ INSERT INTO `seasonal_ingredient` VALUES
                                       (1,'Parsnips',1,2),(2,'Potatoes',2,3),(3,'Microgreens',3,4),(4,'Ramps',4,5),
                                       (5,'Asparagus',5,6),(6,'Strawberries',6,7),(7,'Zucchini',7,8),(8,'Sweet Corn',8,9),
                                       (9,'Apples',9,10),(10,'Pumpkins',10,11),(11,'Cranberries',11,12),(12,'Beets',12,1);
+
+-- 2. SEED RECIPES (10 Recipes across the team)
+INSERT INTO `recipe` (`recipe_name`, `description`, `ingredients_text`, `user_id`, `seasonal_ingredient_id`) VALUES
+('Beet Salad', 'Madison winter staple.', 'Beets, goat cheese.', 1, 12),
+('Ramp Pasta', 'Spring favorite.', 'Ramps, garlic, noodles.', 1, 4),
+('Strawberry Galette', 'Rustic summer dessert.', 'Strawberries, crust.', 2, 6),
+('Roasted Beets', 'Simple and earthy.', 'Beets, salt, olive oil.', 2, 12),
+('Apple Crisp', 'Classic fall treat.', 'Apples, oats, cinnamon.', 3, 9),
+('Asparagus Frittata', 'Perfect Sunday brunch.', 'Asparagus, eggs, feta.', 4, 5),
+('Corn Chowder', 'Fresh summer corn soup.', 'Corn, potatoes, cream.', 5, 8),
+('Pickled Beets', 'Tangy and preserved.', 'Beets, vinegar, cloves.', 6, 12),
+('Apple Cider Glazed Pork', 'Savory autumn dinner.', 'Pork, apples, cider.', 6, 9),
+('Garlic Potato Gratin', 'Hearty comfort food.', 'Potatoes, garlic, gruyere.', 5, 2);

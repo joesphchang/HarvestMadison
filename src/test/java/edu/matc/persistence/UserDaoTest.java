@@ -48,8 +48,8 @@ public class UserDaoTest {
 
     @Test
     void deleteUser() {
-        userDao.delete(userDao.getById(3));
-        assertNull(userDao.getById(3));
+        userDao.delete(userDao.getById(7));
+        assertNull(userDao.getById(7));
     }
 
     @Test
