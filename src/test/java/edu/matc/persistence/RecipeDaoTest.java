@@ -62,17 +62,27 @@ public class RecipeDaoTest {
 
     @Test
     void deleteRecipe() {
-
+        recipeDao.delete(recipeDao.getById(10));
+        assertNull(recipeDao.getById(10));
     }
 
     @Test
     void getRecipesByUser() {
+        User user = userDao.getById(1);
 
+        Recipe retrievedRecipe = (Recipe)recipeDao.getById(2);
+
+        assertEquals(user.getFirstName(), retrievedRecipe.getUser().getFirstName());
     }
 
     @Test
     void getRecipesBySeasonalIngredient() {
+        SeasonalIngredient beets = seasonalIngredientDao.getById(12);
 
+        List<Recipe> beetRecipes = recipeDao.findByPropertyEqual("seasonalIngredient", beets);
+
+        assertNotNull(beetRecipes);
+        assertEquals(3, beetRecipes.size());
     }
 
     @Test
@@ -83,6 +93,8 @@ public class RecipeDaoTest {
 
     @Test
     void getRecipeByPropertyEqual() {
-
+        List<Recipe> recipes = recipeDao.findByPropertyEqual("recipeName", "Apple Crisp");
+        assertEquals(1, recipes.size());
+        assertEquals(5, recipes.get(0).getId());
     }
 }
