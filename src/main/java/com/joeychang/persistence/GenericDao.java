@@ -1,22 +1,17 @@
-package edu.matc.persistence;
+package com.joeychang.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import edu.matc.entity.Recipe;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.criteria.HibernateCriteriaBuilder;
-
-import java.util.List;
 
 /**
  * A generic DAO somewhat inspired by http://rodrigouchoa.wordpress.com

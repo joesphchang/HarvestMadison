@@ -1,6 +1,6 @@
-package edu.matc.persistence;
+package com.joeychang.persistence;
 
-import edu.matc.entity.SeasonalIngredient;
+import com.joeychang.entity.SeasonalIngredient;
 
 public class SeasonalIngredientDao extends GenericDao<SeasonalIngredient> {
 

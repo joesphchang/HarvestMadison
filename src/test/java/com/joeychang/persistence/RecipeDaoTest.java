@@ -1,9 +1,9 @@
-package edu.matc.persistence;
+package com.joeychang.persistence;
 
-import edu.matc.entity.Recipe;
-import edu.matc.entity.SeasonalIngredient;
-import edu.matc.entity.User;
-import edu.matc.util.Database;
+import com.joeychang.entity.Recipe;
+import com.joeychang.entity.SeasonalIngredient;
+import com.joeychang.entity.User;
+import com.joeychang.util.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

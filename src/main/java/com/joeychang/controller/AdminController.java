@@ -1,4 +1,4 @@
-package edu.matc.controller;
+package com.joeychang.controller;
 
 public class AdminController {
 }

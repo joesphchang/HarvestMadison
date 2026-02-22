@@ -17,9 +17,9 @@
         <property name="hibernate.c3p0.max_statements">50</property>
         <property name="hibernate.c3p0.idle_test_period">3000</property>
 
-        <mapping class="edu.matc.entity.User"/>
-        <mapping class="edu.matc.entity.Recipe"/>
-        <mapping class="edu.matc.entity.SeasonalIngredient"/>
+        <mapping class="com.joeychang.entity.User"/>
+        <mapping class="com.joeychang.entity.Recipe"/>
+        <mapping class="com.joeychang.entity.SeasonalIngredient"/>
 
     </session-factory>
 

@@ -1,4 +1,4 @@
-package edu.matc.entity;
+package com.joeychang.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
