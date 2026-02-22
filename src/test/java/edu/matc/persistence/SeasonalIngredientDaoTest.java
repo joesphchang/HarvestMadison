@@ -21,4 +21,6 @@ public class SeasonalIngredientDaoTest {
         seasonalIngredientDao = new GenericDao<>(SeasonalIngredient.class);
     }
 
+
+
 }
