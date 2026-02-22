@@ -36,12 +36,28 @@ public class RecipeDaoTest {
 
     @Test
     void updateRecipeSuccess() {
+        Recipe recipe = (Recipe)recipeDao.getById(6);
+        recipe.setDescription("Excellent for breakfast, brunch, lunch, or dinner; can be made ahead and stored in the fridge for days.");
+        recipeDao.update(recipe);
 
+        Recipe retrievedRecipe = (Recipe)recipeDao.getById(6);
+        assertEquals("Excellent for breakfast, brunch, lunch, or dinner; can be made ahead and stored in the fridge for days.", retrievedRecipe.getDescription());
     }
 
     @Test
     void insertRecipeSuccess() {
+        User user = userDao.getById(3);
+        SeasonalIngredient seasonalIngredient = seasonalIngredientDao.getById(2);
 
+        Recipe recipe = new Recipe("Perfect Baked Potato", "A perfect baked potato is hard to beat. The outside is brown and crisp, coated in a crust of sea salt.", "Russet Potatoes, Extra Virgin Olive Oil, Sea Salt", user, seasonalIngredient);
+
+        int insertedRecipeId = recipeDao.insert(recipe);
+
+        Recipe retrievedRecipe = (Recipe)recipeDao.getById(insertedRecipeId);
+
+        assertNotNull(retrievedRecipe);
+        assertEquals(recipe.getDescription(), retrievedRecipe.getDescription());
+        assertEquals("Alice", recipe.getUser().getFirstName());
     }
 
     @Test

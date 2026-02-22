@@ -41,25 +41,38 @@ public class Recipe {
     public Recipe() {
     }
 
+
     /**
      * Instantiates a new Recipe.
      *
-     * @param id              the id
-     * @param recipeName      the recipe namestruc
-     * @param description     the description
-     * @param ingredientsText the ingredients text
+     * @param recipeName         the recipe name
+     * @param description        the description
+     * @param ingredientsText    the ingredients text
+     * @param user               the user
+     * @param seasonalIngredient the seasonal ingredient
      */
-    public Recipe(int id, String recipeName, String description, String ingredientsText) {
-        this.id = id;
+    public Recipe(String recipeName, String description, String ingredientsText, User user, SeasonalIngredient seasonalIngredient) {
         this.recipeName = recipeName;
         this.description = description;
         this.ingredientsText = ingredientsText;
+        this.user = user;
+        this.seasonalIngredient = seasonalIngredient;
     }
 
+    /**
+     * Gets created on.
+     *
+     * @return the created on
+     */
     public Timestamp getCreatedOn() {
         return createdOn;
     }
 
+    /**
+     * Sets created on.
+     *
+     * @param createdOn the created on
+     */
     public void setCreatedOn(Timestamp createdOn) {
         this.createdOn = createdOn;
     }
