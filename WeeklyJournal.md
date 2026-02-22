@@ -27,7 +27,7 @@ The plan for seasonal ingredients is to insert data into a Seasonal Ingredient t
 Dates MM/DD and comparing it to real time to display the actual ingredient. Matching the ingredient within Spoonacular
 to get recipes, ingredient photo, ingredient name, etc. 
 
-### February 21st, 2026 "Test Complete"
+### February 21st, 2026 "Test Complete" 
 
 I had the week planned out to finish out week 5 and get everything squared away. It was a long week trying to get my project
 all set up. I feel like this is the long haul, and once this is all done everything from here on out will be a smooth sail.
@@ -35,8 +35,11 @@ I look forward to the upcoming weeks as I deploy this project onto AWS. I plan o
 what I can get under the hood to display. 
 
 Plan on integrating bootstrap and figuring out the styling throughout. Once I get the pages to all-align and my head/navigation
-all squared away onto all my pages I feel like it's all styling from here on out until we get into RESTful Web Services
-and then I got to figure out how to match seasonal ingredients to the ingredients within the Spoonacular API database, 
-pull all the information out specifically for the monthly ingredients. For now, we digress and move forward as we did accomplish
+all squared away onto all my pages I feel like it's all styling from here on out until we get into RESTful Web Services.
+Then, I got to figure out how to match seasonal ingredients to the ingredients within the Spoonacular API database, 
+pull all the information out, specifically for the monthly ingredients. For now, we digress and move forward as we did accomplish
 what was needed to be done for this week and more. 
+
+I should probably time clock how long I've worked on this project so far. I haven't been doing it, but it has been over
+5 hours so far. 
 
