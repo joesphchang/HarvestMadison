@@ -43,3 +43,10 @@ what was needed to be done for this week and more.
 I should probably time clock how long I've worked on this project so far. I haven't been doing it, but it has been over
 5 hours so far. 
 
+### February 23rd, 2026 "AWS and UI Challenges"
+
+This week we're put onto a challenge to deploy our projects onto AWS. The plan for this week is to get a little head-start 
+on boilerplate UI just to make sure I'm able to see information on my web-page before I deploy to AWS. I plan on integrating 
+Bootstrap UI to make it less complicated on me to design what I want. I also plan on creating my SearchController to be
+fully functional, so I'm able to search through recipes and hopefully display the details. It won't be pretty now, but 
+it'll be great to get a head-start on UI so I can just do finishing touches when it comes to an end. 
