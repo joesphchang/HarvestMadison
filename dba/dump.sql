@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.4.7, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: harvest_madison_test
+-- Host: 127.0.0.1    Database: harvest_madison
 -- ------------------------------------------------------
 -- Server version	8.4.7
 

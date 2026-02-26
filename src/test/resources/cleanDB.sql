@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.4.7, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: harvest_madison_test
+-- Host: 127.0.0.1    Database: harvest_madison
 -- ------------------------------------------------------
 -- Server version	8.4.7
 
@@ -14,6 +14,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `recipe`

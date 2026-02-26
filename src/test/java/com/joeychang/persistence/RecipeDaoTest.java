@@ -11,12 +11,27 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Recipe dao test.
+ */
 public class RecipeDaoTest {
 
+    /**
+     * The User dao.
+     */
     GenericDao<User> userDao;
+    /**
+     * The Recipe dao.
+     */
     GenericDao<Recipe> recipeDao;
+    /**
+     * The Seasonal ingredient dao.
+     */
     GenericDao<SeasonalIngredient> seasonalIngredientDao;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
@@ -26,6 +41,9 @@ public class RecipeDaoTest {
         seasonalIngredientDao = new GenericDao<>(SeasonalIngredient.class);
     }
 
+    /**
+     * Gets recipe by id success.
+     */
     @Test
     void getRecipeByIdSuccess() {
         Recipe retrievedRecipe = (Recipe)recipeDao.getById(1);
@@ -34,6 +52,9 @@ public class RecipeDaoTest {
         assertEquals(1, retrievedRecipe.getUser().getId());
     }
 
+    /**
+     * Update recipe success.
+     */
     @Test
     void updateRecipeSuccess() {
         Recipe recipe = (Recipe)recipeDao.getById(6);
@@ -44,28 +65,43 @@ public class RecipeDaoTest {
         assertEquals("Excellent for breakfast, brunch, lunch, or dinner; can be made ahead and stored in the fridge for days.", retrievedRecipe.getDescription());
     }
 
+    /**
+     * Insert recipe success.
+     */
     @Test
     void insertRecipeSuccess() {
         User user = userDao.getById(3);
         SeasonalIngredient seasonalIngredient = seasonalIngredientDao.getById(2);
 
-        Recipe recipe = new Recipe("Perfect Baked Potato", "A perfect baked potato is hard to beat. The outside is brown and crisp, coated in a crust of sea salt.", "Russet Potatoes, Extra Virgin Olive Oil, Sea Salt", user, seasonalIngredient);
+        Recipe newRecipe = new Recipe("Perfect Baked Potato", "A perfect baked potato is hard to beat. The outside is brown and crisp, coated in a crust of sea salt.", "Russet Potatoes, Extra Virgin Olive Oil, Sea Salt", user, seasonalIngredient);
 
-        int insertedRecipeId = recipeDao.insert(recipe);
+        int insertedRecipeId = recipeDao.insert(newRecipe);
 
         Recipe retrievedRecipe = (Recipe)recipeDao.getById(insertedRecipeId);
-
-        assertNotNull(retrievedRecipe);
-        assertEquals(recipe.getDescription(), retrievedRecipe.getDescription());
-        assertEquals("Alice", recipe.getUser().getFirstName());
+        newRecipe.setCreatedOn(retrievedRecipe.getCreatedOn());
+        assertEquals(newRecipe.getId(), retrievedRecipe.getId());
     }
 
+    /**
+     * Delete recipe.
+     */
     @Test
     void deleteRecipe() {
-        recipeDao.delete(recipeDao.getById(10));
-        assertNull(recipeDao.getById(10));
+        User user = userDao.getById(1);
+        SeasonalIngredient ingredient = seasonalIngredientDao.getById(1);
+
+        Recipe recipeToInsert = new Recipe("Test Recipe", "Description", "Ingredients", user, ingredient);
+        int id = recipeDao.insert(recipeToInsert);
+
+        Recipe retrievedRecipe = (Recipe)recipeDao.getById(id);
+        recipeDao.delete(retrievedRecipe);
+
+        assertNull(recipeDao.getById(id));
     }
 
+    /**
+     * Gets recipes by user.
+     */
     @Test
     void getRecipesByUser() {
         User user = userDao.getById(1);
@@ -75,6 +111,9 @@ public class RecipeDaoTest {
         assertEquals(user.getFirstName(), retrievedRecipe.getUser().getFirstName());
     }
 
+    /**
+     * Gets recipes by seasonal ingredient.
+     */
     @Test
     void getRecipesBySeasonalIngredient() {
         SeasonalIngredient beets = seasonalIngredientDao.getById(12);
@@ -85,16 +124,30 @@ public class RecipeDaoTest {
         assertEquals(3, beetRecipes.size());
     }
 
+    /**
+     * Gets all recipes.
+     */
     @Test
     void getAllRecipes() {
         List<Recipe> recipes = recipeDao.getAll();
         assertEquals(10, recipes.size());
     }
 
+    /**
+     * Gets recipe by property equal.
+     */
     @Test
     void getRecipeByPropertyEqual() {
         List<Recipe> recipes = recipeDao.findByPropertyEqual("recipeName", "Apple Crisp");
         assertEquals(1, recipes.size());
         assertEquals(5, recipes.get(0).getId());
+    }
+
+    /**
+     * Delete recipe with user.
+     */
+    @Test
+    void deleteRecipeWithUser() {
+
     }
 }

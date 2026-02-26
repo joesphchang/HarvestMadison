@@ -23,6 +23,9 @@ public class SeasonalIngredient {
     @Column(name = "end_date")
     private int endDate;
 
+    @Column(name = "image_url")
+    private String imageURL;
+
     @OneToMany(mappedBy = "seasonalIngredient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Recipe> recipes = new ArrayList<>();
 
@@ -106,6 +109,14 @@ public class SeasonalIngredient {
         this.endDate = endDate;
     }
 
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
     @Override
     public String toString() {
         return "SeasonalIngredient{" +
@@ -113,6 +124,8 @@ public class SeasonalIngredient {
                 ", seasonalIngredientName='" + seasonalIngredientName + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
+                ", imageURL='" + imageURL + '\'' +
+                ", recipes=" + recipes +
                 '}';
     }
 }

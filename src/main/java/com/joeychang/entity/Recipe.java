@@ -27,6 +27,9 @@ public class Recipe {
     @Column(name = "ingredients_text")
     private String ingredientsText;
 
+    @Column(name = "image_url")
+    private String imageURL;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -150,6 +153,24 @@ public class Recipe {
     }
 
     /**
+     * Gets image url.
+     *
+     * @return the image url
+     */
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    /**
+     * Sets image url.
+     *
+     * @param imageURL the image url
+     */
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    /**
      * Gets user.
      *
      * @return the user
@@ -193,6 +214,9 @@ public class Recipe {
                 ", description='" + description + '\'' +
                 ", createdOn=" + createdOn +
                 ", ingredientsText='" + ingredientsText + '\'' +
+                ", imageURL='" + imageURL + '\'' +
+                ", user=" + user +
+                ", seasonalIngredient=" + seasonalIngredient +
                 '}';
     }
 }

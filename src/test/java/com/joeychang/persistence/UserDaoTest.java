@@ -9,10 +9,19 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type User dao test.
+ */
 public class UserDaoTest {
 
+    /**
+     * The User dao.
+     */
     GenericDao<User> userDao;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
@@ -20,6 +29,9 @@ public class UserDaoTest {
         userDao = new GenericDao<>(User.class);
     }
 
+    /**
+     * Gets user by id success.
+     */
     @Test
     void getUserByIdSuccess() {
         User retrievedUser = (User)userDao.getById(1);
@@ -27,7 +39,10 @@ public class UserDaoTest {
         assertEquals("Joey", retrievedUser.getFirstName());
     }
 
-   @Test
+    /**
+     * Update user success.
+     */
+    @Test
    void updateUserSuccess() {
         User userToUpdate = (User)userDao.getById(2);
         userToUpdate.setLastName("Jordan");
@@ -37,7 +52,10 @@ public class UserDaoTest {
         assertEquals("Jordan", actualUser.getLastName());
    }
 
-   @Test
+    /**
+     * Insert user success.
+     */
+    @Test
    void insertUserSuccess() {
         User userToInsert = new User("Liam", "Pullian", "lpullian");
         int insertedUserId = userDao.insert(userToInsert);
@@ -46,22 +64,42 @@ public class UserDaoTest {
         assertEquals("Liam", insertedUser.getFirstName());
    }
 
+    /**
+     * Delete user.
+     */
     @Test
     void deleteUser() {
-        userDao.delete(userDao.getById(7));
-        assertNull(userDao.getById(7));
+        User userToInsert = new User("Test", "User", "testuser");
+        int id = userDao.insert(userToInsert);
+        User userToDelete = userDao.getById(id);
+        userDao.delete(userToDelete);
+        assertNull(userDao.getById(id));
     }
 
+    /**
+     * Gets all users.
+     */
     @Test
     void getAllUsers() {
         List<User> users = userDao.getAll();
         assertEquals(6, users.size());
     }
 
+    /**
+     * Gets by property equal.
+     */
     @Test
     void getByPropertyEqual() {
         List<User> users = userDao.findByPropertyEqual("lastName", "Baker");
         assertEquals(1, users.size());
         assertEquals(3, users.get(0).getId());
+    }
+
+    /**
+     * Delete user with recipe.
+     */
+    @Test
+    void deleteUserWithRecipe() {
+
     }
 }
