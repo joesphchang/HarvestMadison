@@ -26,17 +26,17 @@
     - [X] Set up Java Beans and intergate it with GenericDao. 
     - [X] Set up a way for Seasonal Ingredients to show up for current month.
     - [X] Create Sample Database to test with.
-    - [ ] Create JUnit tests to set Users, Recipes and Seasonal Ingredients. 
-    - [ ] Update weekly reflection/time log.
+    - [X] Create JUnit tests to set Users, Recipes and Seasonal Ingredients. 
+    - [X] Update weekly reflection/time log.
 
 ### Week 6 - Controllers & Dynamic Display
     Focus: Discovery User Stories (Search by Name and Hero Ingredient)
-    - [ ] Create HomeServlet to handle the "Monthly Hero" logic for the index page.
-    - [ ] Create SearchRecipesServlet to manage keyword searches via API.
-    - [ ] Create index.jsp with a featured section for the current seasonal vegetable.
-    - [ ] Create results.jsp to display randomized API recipe data (Title, Image, and Seasonality Badge).
-    - [ ] Create AboutServlet and about.jsp to explain Madison-specific harvest data.
-    - [ ] Update weekly reflection/time log.
+    - [X] Create HomeServlet to handle the "Monthly Hero" logic for the index page.
+    - [X] Create SearchRecipesServlet to manage keyword searches via API.
+    - [X] Create index.jsp with a featured section for the current seasonal vegetable.
+    - [X] Create results.jsp to display randomized API recipe data (Title, Image, and Seasonality Badge).
+    - [X] Create AboutServlet and about.jsp to explain Madison-specific harvest data.
+    - [X] Update weekly reflection/time log.
 
 ### Week 7 - Checkpoint 2 Due
     Goal: Full CRUD, Unit Tested DAOs, Log4j implemented, and initial AWS Deployment.
