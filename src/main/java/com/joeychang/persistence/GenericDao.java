@@ -154,4 +154,29 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * Finds entities where the property contains the specified value (case-insensitive)
+     * @param propertyMap a map of property names and the partial string values to search for
+     * @return list of matching entities
+     */
+    public List<T> findByPropertyLike(Map<String, Object> propertyMap) {
+        Session session = getSession();
+        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        for (Map.Entry<String, Object> entry : propertyMap.entrySet()) {
+            String searchTerm = "%" + entry.getValue().toString().toLowerCase() + "%";
+            predicates.add(builder.like(
+                    builder.lower(root.get(entry.getKey())),
+                    searchTerm
+            ));
+        }
+        query.select(root).where(builder.and(predicates.toArray(new Predicate[0])));
+        List<T> items = session.createSelectionQuery(query).getResultList();
+        session.close();
+        return items;
+    }
 }

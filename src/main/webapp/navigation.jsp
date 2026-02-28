@@ -7,9 +7,9 @@
         <a class="navbar-brand" href="<c:url value="/index.jsp" />">Harvest Madison</a>
         <div class="me-auto"></div>
 
-        <form class="d-flex mx-auto w-50" role="search" action="<c:url value='/searchRecipes' />" method="GET">
-            <input class="form-control me-2" type="search" name="searchQuery" placeholder="Search Recipes" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="d-flex mx-auto w-50" role="search" action="searchRecipes" method="GET">
+            <input class="form-control me-2" type="text" name="searchTerm" placeholder="Search Recipes">
+            <button class="btn btn-outline-success" type="submit" name="submit" value="search">Search</button>
         </form>
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -17,7 +17,7 @@
                 <a class="nav-link" href="<c:url value='/index.jsp' />">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/listOfRecipes.jsp' />">Recipes</a>
+                <a class="nav-link" href="<c:url value='/listOfRecipes' />">Recipes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value='/about.jsp' />">About</a>
