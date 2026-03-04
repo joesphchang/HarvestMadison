@@ -45,7 +45,7 @@ CREATE TABLE `recipe` (
 
 LOCK TABLES `recipe` WRITE;
 /*!40000 ALTER TABLE `recipe` DISABLE KEYS */;
-INSERT INTO `recipe` VALUES (1,'Beet Salad','Madison winter staple.','2026-02-21 18:26:41','Beets, goat cheese.','https://i.imgur.com/9992ByT.jpeg',1,12),(2,'Ramp Pasta','Spring favorite.','2026-02-21 18:26:41','Ramps, garlic, noodles.','https://i.imgur.com/HhwXKmO.jpeg',1,4),(3,'Strawberry Galette','Rustic summer dessert.','2026-02-21 18:26:41','Strawberries, crust.','https://i.imgur.com/It1Yv4a.jpeg',2,6),(4,'Roasted Beets','Simple and earthy.','2026-02-21 18:26:41','Beets, salt, olive oil.','https://i.imgur.com/UZRjHsG.jpeg',2,12),(5,'Apple Crisp','Classic fall treat.','2026-02-21 18:26:41','Apples, oats, cinnamon.','https://i.imgur.com/BMHbUk1.jpeg',3,9),(6,'Asparagus Frittata','Perfect Sunday brunch.','2026-02-21 18:26:41','Asparagus, eggs, feta.','https://i.imgur.com/lCPKDqI.jpeg',4,5),(7,'Corn Chowder','Fresh summer corn soup.','2026-02-21 18:26:41','Corn, potatoes, cream.','https://i.imgur.com/AIOh7TG.jpeg',5,8),(8,'Pickled Beets','Tangy and preserved.','2026-02-21 18:26:41','Beets, vinegar, cloves.','https://i.imgur.com/ig9ZXoV.jpeg',6,12),(9,'Apple Cider Glazed Pork','Savory autumn dinner.','2026-02-21 18:26:41','Pork, apples, cider.','https://i.imgur.com/rH714Im.jpeg',6,9),(10,'Garlic Potato Gratin','Hearty comfort food.','2026-02-21 18:26:41','Potatoes, garlic, gruyere.','https://i.imgur.com/UYnGgJu.jpeg',5,2);
+INSERT INTO `recipe` VALUES (1,'Beet Salad','Madison winter staple.','2026-02-21 18:26:41','Beets, goat cheese.',NULL,1,12),(2,'Ramp Pasta','Spring favorite.','2026-02-21 18:26:41','Ramps, garlic, noodles.',NULL,1,4),(3,'Strawberry Galette','Rustic summer dessert.','2026-02-21 18:26:41','Strawberries, crust.',NULL,2,6),(4,'Roasted Beets','Simple and earthy.','2026-02-21 18:26:41','Beets, salt, olive oil.',NULL,2,12),(5,'Apple Crisp','Classic fall treat.','2026-02-21 18:26:41','Apples, oats, cinnamon.',NULL,3,9),(6,'Asparagus Frittata','Perfect Sunday brunch.','2026-02-21 18:26:41','Asparagus, eggs, feta.',NULL,4,5),(7,'Corn Chowder','Fresh summer corn soup.','2026-02-21 18:26:41','Corn, potatoes, cream.',NULL,5,8),(8,'Pickled Beets','Tangy and preserved.','2026-02-21 18:26:41','Beets, vinegar, cloves.',NULL,6,12),(9,'Apple Cider Glazed Pork','Savory autumn dinner.','2026-02-21 18:26:41','Pork, apples, cider.',NULL,6,9),(10,'Garlic Potato Gratin','Hearty comfort food.','2026-02-21 18:26:41','Potatoes, garlic, gruyere.',NULL,5,2);
 /*!40000 ALTER TABLE `recipe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,7 +72,7 @@ CREATE TABLE `seasonal_ingredient` (
 
 LOCK TABLES `seasonal_ingredient` WRITE;
 /*!40000 ALTER TABLE `seasonal_ingredient` DISABLE KEYS */;
-INSERT INTO `seasonal_ingredient` VALUES (1,'Parsnips',1,2,'https://i.imgur.com/B5vh5Zf.jpeg'),(2,'Potatoes',2,3,'https://i.imgur.com/wUh9FUG.jpeg'),(3,'Microgreens',3,4,'https://i.imgur.com/ZHPUdpC.jpeg'),(4,'Ramps',4,5,'https://i.imgur.com/bnzd8RH.jpeg'),(5,'Asparagus',5,6,'https://i.imgur.com/26AxKw5.jpeg'),(6,'Strawberries',6,7,'https://i.imgur.com/rtjztRL.jpeg'),(7,'Zucchini',7,8,'https://i.imgur.com/vbmNCeS.jpeg'),(8,'Sweet Corn',8,9,'https://i.imgur.com/sDb7bhV.jpeg'),(9,'Apples',9,10,'https://i.imgur.com/s5F3EIP.jpeg'),(10,'Pumpkins',10,11,'https://i.imgur.com/K84wsf9.jpeg'),(11,'Cranberries',11,12,'https://i.imgur.com/4dpyzwK.jpeg'),(12,'Beets',12,1,'https://i.imgur.com/5QIEntd.jpeg');
+INSERT INTO `seasonal_ingredient` VALUES (1,'Parsnips',1,2,NULL),(2,'Potatoes',2,3,NULL),(3,'Microgreens',3,4,NULL),(4,'Ramps',4,5,NULL),(5,'Asparagus',5,6,NULL),(6,'Strawberries',6,7,NULL),(7,'Zucchini',7,8,NULL),(8,'Sweet Corn',8,9,NULL),(9,'Apples',9,10,NULL),(10,'Pumpkins',10,11,NULL),(11,'Cranberries',11,12,NULL),(12,'Beets',12,1,NULL);
 /*!40000 ALTER TABLE `seasonal_ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-03 23:50:16
+-- Dump completed on 2026-02-21 22:10:31
