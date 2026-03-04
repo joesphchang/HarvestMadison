@@ -1,6 +1,8 @@
 package com.joeychang.controller;
 import com.joeychang.entity.Recipe;
 import com.joeychang.persistence.GenericDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,33 +23,42 @@ import java.io.IOException;
 })
 public class RecipeController extends HttpServlet {
 
+    private static final Logger logger = LogManager.getLogger(RecipeController.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GenericDao<Recipe> recipeDao = new GenericDao<>(Recipe.class);
         String path = req.getServletPath();
         String destination = "/WEB-INF/jsp/recipes/listOfRecipes.jsp";
 
-        if (path.equals("/search")) {
-            String searchTerm = req.getParameter("searchTerm");
-            if (searchTerm != null && !searchTerm.trim().isEmpty()) {
-                java.util.Map<String, Object> propertyMap = new java.util.HashMap<>();
-                propertyMap.put("recipeName", searchTerm);
-                req.setAttribute("recipes", recipeDao.findByPropertyLike(propertyMap));
-            }
-            destination = "/WEB-INF/jsp/recipes/searchRecipeResults.jsp";
+        logger.debug("Entering doGet for path: {}", path);
 
-        } else if (path.equals("/recipeDetails")) {
-            String id = req.getParameter("id");
-            if (id != null) {
-                int recipeId = Integer.parseInt(id);
-                req.setAttribute("recipe", recipeDao.getById(recipeId));
+        try {
+            if (path.equals("/search")) {
+                String searchTerm = req.getParameter("searchTerm");
+                if (searchTerm != null && !searchTerm.trim().isEmpty()) {
+                    logger.info("Searching for recipes with term: {}", searchTerm);
+                    req.setAttribute("recipes", recipeDao.findByPropertyLike("recipeName", searchTerm));
+                }
+                destination = "/WEB-INF/jsp/recipes/searchRecipeResults.jsp";
+            } else if (path.equals("/recipeDetails")) {
+                String id = req.getParameter("id");
+                try {
+                    int recipeId = Integer.parseInt(id);
+                    req.setAttribute("recipe", recipeDao.getById(recipeId));
+                } catch (NumberFormatException e) {
+                    logger.warn("User provided invalid Recipe ID format: '{}'", id);
+                }
+                destination = "/WEB-INF/jsp/recipes/recipeDetails.jsp";
+            } else {
+                logger.info("Retrieving all recipes");
+                req.setAttribute("recipes", recipeDao.getAll());
             }
-            destination = "/WEB-INF/jsp/recipes/recipeDetails.jsp";
-
-        } else {
-            req.setAttribute("recipes", recipeDao.getAll());
+            req.getRequestDispatcher(destination).forward(req, resp);
+        } catch (Exception exception) {
+            logger.error("Critical failure in RecipeController at path: {}", path, exception);
+            req.setAttribute("errorMessage", "Our chefs are having trouble in the kitchen. Please try again later.");
+            req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
         }
-
-        req.getRequestDispatcher(destination).forward(req, resp);
     }
 }
