@@ -29,21 +29,23 @@
     - [X] Create JUnit tests to set Users, Recipes and Seasonal Ingredients. 
     - [X] Update weekly reflection/time log.
 
-### Week 6 - Controllers & Dynamic Display
-    Focus: Discovery User Stories (Search by Name and Hero Ingredient)
-    - [X] Create HomeServlet to handle the "Monthly Hero" logic for the index page.
-    - [X] Create SearchRecipesServlet to manage keyword searches via API.
-    - [X] Create index.jsp with a featured section for the current seasonal vegetable.
-    - [X] Create results.jsp to display randomized API recipe data (Title, Image, and Seasonality Badge).
-    - [X] Create AboutServlet and about.jsp to explain Madison-specific harvest data.
+### Week 6 - Controllers & Dynamic Display + AWS 
+    Focus: AWS Deployment and Peer Review
+    - [X] Create a MainController 
+    - [X] Get SearchRecipes to work
+    - [X] Retrieve data from Recipes database 
+    - [X] Work on structuring JSP pages
     - [X] Update weekly reflection/time log.
+    - [X] Peer Review 
 
-### Week 7 - Checkpoint 2 Due
+### Week 7 - Checkpoint 2 Due + User Incognito 
     Goal: Full CRUD, Unit Tested DAOs, Log4j implemented, and initial AWS Deployment.
     - [ ] Double-check all Checkpoint 2 items are visible in GitHub (Database designed, one DAO with full CRUD, unit tests complete).
-    - [ ] Set up AWS RDS (MySQL) and update production properties.
-    - [ ] Deploy the .war file to AWS Elastic Beanstalk.
-    - [ ] Verify database connection in the cloud environment.
+    - [X] Set up AWS RDS (MySQL) and update production properties.
+    - [X] Deploy the .war file to AWS Elastic Beanstalk.
+    - [X] Verify database connection in the cloud environment.
+    - [ ] Set up Incoginto
+    - [ ] Work on Home Page and get Seasonal Ingredient + Recipes connected to show.
     - [ ] Update weekly reflection/time log.
 
 ### Week 8 - 12: Authentication & Checkpoint 3
