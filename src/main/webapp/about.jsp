@@ -1,11 +1,11 @@
 <%@include file="taglib.jsp"%>
 <c:set var="title" value="Home" />
-<%@include file="head.jsp"%>
+<%@include file="WEB-INF/jsp/common/head.jsp"%>
 <!DOCTYPE html>
 <html>
 <body>
-<%@include file="navigation.jsp"%>
-<%@include file="footer.jsp"%>
+<%@include file="WEB-INF/jsp/common/navigation.jsp"%>
+<%@include file="WEB-INF/jsp/common/footer.jsp"%>
 </body>
 
 </html>

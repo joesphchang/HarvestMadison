@@ -1,4 +1,4 @@
-<%@include file="taglib.jsp"%>
+<%@include file="../../../taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <body>
@@ -30,8 +30,8 @@
                     </li>
                 </c:when>
                 <c:otherwise>
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/signIn.jsp' />">Sign In</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/signUp.jsp' />">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<c:url value='/WEB-INF/jsp/auth/signIn.jsp' />">Sign In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<c:url value='/WEB-INF/jsp/auth/signUp.jsp' />">Sign Up</a></li>
                 </c:otherwise>
             </c:choose>
         </ul>

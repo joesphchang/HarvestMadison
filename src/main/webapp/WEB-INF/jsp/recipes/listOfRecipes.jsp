@@ -1,11 +1,11 @@
-<%@include file="taglib.jsp"%>
+<%@include file="../../../taglib.jsp"%>
 <%--@elvariable id="recipes" type="java.util.List<com.joeychang.entity.Recipe>"--%>
 <c:set var="title" value="List of Recipes" />
 <!DOCTYPE html>
 <html>
-<%@include file="head.jsp"%>
+<%@include file="../common/head.jsp"%>
 <body>
-<%@include file="navigation.jsp"%>
+<%@include file="../common/navigation.jsp"%>
     <table class="recipe-grid-table table table-striped">
         <thead>
         <tr>
@@ -28,7 +28,7 @@
         </c:forEach>
         </tbody>
     </table>
-<%@include file="footer.jsp"%>
+<%@include file="../common/footer.jsp"%>
 </body>
 
 </html>
