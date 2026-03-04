@@ -50,3 +50,13 @@ on boilerplate UI just to make sure I'm able to see information on my web-page b
 Bootstrap UI to make it less complicated on me to design what I want. I also plan on creating my SearchController to be
 fully functional, so I'm able to search through recipes and hopefully display the details. It won't be pretty now, but 
 it'll be great to get a head-start on UI so I can just do finishing touches when it comes to an end. 
+
+### March 1st, 2026 "AWS Set Up and Peer Review"
+
+The week has passed and now I have gone through the AWS Set up and have done a peer review. Seeing your data being 
+shown onto a web-page is unreal especially in java. This class is definitely moving at 110mph, so I'm trying my best to
+hold on. Not a bad week and also the peer review has gain me some insight on what I should work on and look forward to. 
+I had the opportunity to meet with Emile and we have met for an hour. We're in the same category when it comes to project
+ideas so it's nice to reflect and see what others are working on when it comes to similar projects. I'm excited to see my project
+unfold more and more as I dig into it. 
+
