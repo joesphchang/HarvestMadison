@@ -14,8 +14,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
- * A generic DAO somewhat inspired by http://rodrigouchoa.wordpress.com
+ * The type Generic dao.
  *
+ * @param <T> the type parameter
  */
 public class GenericDao<T> {
 
@@ -25,25 +26,21 @@ public class GenericDao<T> {
     /**
      * Instantiates a new Generic dao.
      *
-     * @param type the entity type, for example, User.
+     * @param type the type
      */
     public GenericDao(Class<T> type) {
         this.type = type;
     }
 
-    /**
-     * Returns an open session from the SessionFactory
-     * @return session
-     */
     private Session getSession() {
         return SessionFactoryProvider.getSessionFactory().openSession();
 
     }
 
     /**
-     * Gets all entities
+     * Gets all.
      *
-     * @return the all entities
+     * @return the all
      */
     public List<T> getAll() {
         Session session = getSession();
@@ -57,9 +54,10 @@ public class GenericDao<T> {
     }
 
     /**
-     * Gets an entity by id
-     * @param id entity id to search by
-     * @return entity
+     * Gets by id.
+     *
+     * @param id the id
+     * @return the by id
      */
     public T getById(int id) {
         Session session = getSession();
@@ -69,9 +67,9 @@ public class GenericDao<T> {
     }
 
     /**
-     * Deletes the entity.
+     * Delete.
      *
-     * @param entity entity to be deleted
+     * @param entity the entity
      */
     public void delete(T entity) {
         Session session = getSession();
@@ -83,9 +81,10 @@ public class GenericDao<T> {
 
 
     /**
-     * Inserts the entity.
+     * Insert int.
      *
-     * @param entity entity to be inserted
+     * @param entity the entity
+     * @return the int
      */
     public int insert(T entity) {
         Session session = getSession();
@@ -100,9 +99,9 @@ public class GenericDao<T> {
     }
 
     /**
-     * Inserts or updates the entity.
+     * Update.
      *
-     * @param entity entity to be inserted/saved
+     * @param entity the entity
      */
     public void update(T entity) {
         Session session = getSession();
@@ -114,11 +113,11 @@ public class GenericDao<T> {
 
 
     /**
-     * Finds entities by one of its properties.
-     * sample usage: findByPropertyEqual("lastname", "Curry")
-     * @param propertyName the property name.
-     * @param value the value by which to find.
-     * @return the list of all entities found matching the criteria
+     * Find by property equal list.
+     *
+     * @param propertyName the property name
+     * @param value        the value
+     * @return the list
      */
     public List<T> findByPropertyEqual(String propertyName, Object value) {
         Session session = getSession();
@@ -133,11 +132,11 @@ public class GenericDao<T> {
     }
 
     /**
-     * Retrieves a list of entities of type T from the database where a specified property matches a given pattern.
+     * Find by property like list.
      *
-     * @param propertyName the name of the property to be matched
-     * @param value the pattern to be matched against the specified property (e.g., "%value%")
-     * @return a List of entities of type T that match the specified property and pattern
+     * @param propertyName the property name
+     * @param value        the value
+     * @return the list
      */
     public List<T> findByPropertyLike(String propertyName, String value) {
         Session session = getSession();

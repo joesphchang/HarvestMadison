@@ -13,6 +13,9 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 
+/**
+ * The type Recipe controller.
+ */
 @WebServlet(urlPatterns = {
         // Maps to List All
         "/recipes",
