@@ -60,3 +60,18 @@ I had the opportunity to meet with Emile and we have met for an hour. We're in t
 ideas so it's nice to reflect and see what others are working on when it comes to similar projects. I'm excited to see my project
 unfold more and more as I dig into it. 
 
+### March 3rd, 2026 "Checkpoints, Cognito & User, Restructuring my Pages. Having it all work."
+
+This week is a heavy week of doing, since now I have to turn my focus on the checkpoint. Getting log4j logs going for each request,
+fully testing out all my DAO's and making sure I'm making the right decisions with my Database. I have fully transformed my
+Servlets, GenericDaos and Web Pages to talk to each other now. I have also implemented log4j within my RecipeController. 
+I plan on tackling Unit Testing and getting photos for each image within my SeasonalIngredient table. Working on the logic
+to get the specific SeasonalIngredient to show up and on my web-page and the recipes following along with the specific 
+ingredient. 
+
+but for the beginning of the week so far I need to do
+
+- Log4J Implementation (Done)
+- ERD Diagram (Screenshot within screenshots)
+- Fully Tested Each Dao (2 Remaining Tests within Recipe & User. Test out SeasonalIngredientDao)
+- Implemented GenericDao (Done)
