@@ -3,7 +3,7 @@
 <c:set var="title" value="List of Recipes" />
 <!DOCTYPE html>
 <html>
-<%@include file="../common/head.jsp"%>
+<c:import url="../common/head.jsp" />
 <body>
 <c:import url="../common/navigation.jsp" />
     <table class="recipe-grid-table table table-striped">
