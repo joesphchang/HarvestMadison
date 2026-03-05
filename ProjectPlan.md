@@ -40,7 +40,7 @@
 
 ### Week 7 - Checkpoint 2 Due + User Incognito 
     Goal: Full CRUD, Unit Tested DAOs, Log4j implemented, and initial AWS Deployment.
-    - [ ] Double-check all Checkpoint 2 items are visible in GitHub (Database designed, one DAO with full CRUD, unit tests complete).
+    - [X] Double-check all Checkpoint 2 items are visible in GitHub (Database designed, one DAO with full CRUD, unit tests complete).
     - [X] Set up AWS RDS (MySQL) and update production properties.
     - [X] Deploy the .war file to AWS Elastic Beanstalk.
     - [X] Verify database connection in the cloud environment.

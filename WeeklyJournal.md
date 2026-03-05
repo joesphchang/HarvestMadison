@@ -75,3 +75,16 @@ but for the beginning of the week so far I need to do
 - ERD Diagram (Screenshot within screenshots)
 - Fully Tested Each Dao (2 Remaining Tests within Recipe & User. Test out SeasonalIngredientDao)
 - Implemented GenericDao (Done)
+
+### March 4th, 2026 "Mid-Week Update"
+
+I have turned in my #2 Checkpoint and hopefully all goes well. Now I'm focusing on catching on Week 7 work and getting
+Seasonal Ingredients to show up on my index and along with the Recipes related to that Seasonal Ingredient. 
+Once I'm able to figure that logic out, I think everything else will be smooth sailing.
+
+Updated list from March 3rd:
+
+- Log4J Implementation (Done)
+- ERD Diagram (Done)
+- Fully Tested Each Dao (Done)
+- Implemented GenericDao (Done)
