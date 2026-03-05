@@ -2,10 +2,11 @@
 <c:set var="title" value="Sign In" />
 <!DOCTYPE html>
 <html>
-<%@include file="../common/head.jsp"%>
+<c:import url="../common/head.jsp" />
 <body>
-<%@include file="../common/navigation.jsp"%>
+<c:import url="../common/navigation.jsp" />
 
-<%@include file="../common/footer.jsp"%>
+
+<c:import url="../common/footer.jsp" />
 </body>
 </html>

@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../../../taglib.jsp"%>
 <%@ page import="java.util.Date" %>
 <!DOCTYPE html>
 <html>

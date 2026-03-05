@@ -2,11 +2,11 @@
 <c:set var="title" value="Home" />
 <!DOCTYPE html>
 <html>
-<%@include file="WEB-INF/jsp/common/head.jsp"%>
+    <c:import url="WEB-INF/jsp/common/head.jsp" />
 <body>
-    <%@include file="WEB-INF/jsp/common/navigation.jsp"%>
-    <h2>Hello World!</h2>
-    <%@include file="WEB-INF/jsp/common/footer.jsp"%>
+    <c:import url="WEB-INF/jsp/common/navigation.jsp" />
+        <h1>Hello World!</h1>
+    <c:import url="WEB-INF/jsp/common/footer.jsp" />
 </body>
 
 </html>

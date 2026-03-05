@@ -5,7 +5,7 @@
 <html>
 <%@include file="../common/head.jsp"%>
 <body>
-<%@include file="../common/navigation.jsp"%>
+<c:import url="../common/navigation.jsp" />
     <table class="recipe-grid-table table table-striped">
         <thead>
         <tr>
@@ -28,7 +28,7 @@
         </c:forEach>
         </tbody>
     </table>
-<%@include file="../common/footer.jsp"%>
+<c:import url="../common/footer.jsp" />
 </body>
 
 </html>

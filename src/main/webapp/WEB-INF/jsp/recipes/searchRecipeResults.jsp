@@ -9,9 +9,9 @@
 </script>
 <!DOCTYPE html>
 <html>
-<%@include file="../common/head.jsp"%>
+<c:import url="../common/head.jsp" />
 <body>
-<%@include file="../common/navigation.jsp"%>
+<c:import url="../common/navigation.jsp" />
     <h2>Search Results: </h2>
         <table class="recipe-grid-table">
             <thead>
@@ -44,7 +44,7 @@
             </c:forEach>
             </tbody>
         </table>
-<%@include file="../common/footer.jsp"%>
+<c:import url="../common/footer.jsp" />
 </body>
 </html>
 
