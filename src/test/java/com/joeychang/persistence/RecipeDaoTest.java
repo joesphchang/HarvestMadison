@@ -148,6 +148,13 @@ public class RecipeDaoTest {
      */
     @Test
     void deleteRecipeWithUser() {
+        User user = userDao.getById(6);
+        int recipeCountBefore = recipeDao.findByPropertyEqual("user", user).size();
 
+        userDao.delete(user);
+        assertNull(userDao.getById(6));
+
+        List<Recipe> recipesWithoutUser = recipeDao.findByPropertyEqual("user", user);
+        assertEquals(0, recipesWithoutUser.size());
     }
 }
