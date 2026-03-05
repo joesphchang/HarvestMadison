@@ -1,5 +1,9 @@
 package com.joeychang.utilities;
 
+import com.joeychang.controller.RecipeController;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 import java.util.*;
 
@@ -8,17 +12,17 @@ import java.util.*;
  *
  */
 public interface PropertiesLoader{
-
+    static final Logger logger = LogManager.getLogger(RecipeController.class);
     default Properties loadProperties(String propertiesFilePath) throws Exception {
         Properties properties = new Properties();
         try {
             properties.load(this.getClass().getResourceAsStream(propertiesFilePath));
         } catch (IOException ioException) {
-            ioException.printStackTrace();
+            logger.error("Failed to process IO operation: {}", ioException.getMessage(), ioException);
             throw ioException;
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            throw exception;
+        } catch (Exception e) {
+            logger.error("Unexpected error occurred: ", e);
+            throw e;
         }
         return properties;
     }
