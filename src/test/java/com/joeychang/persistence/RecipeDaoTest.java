@@ -148,13 +148,13 @@ public class RecipeDaoTest {
      */
     @Test
     void deleteRecipeWithUser() {
-        User user = userDao.getById(6);
-        int recipeCountBefore = recipeDao.findByPropertyEqual("user", user).size();
+        Recipe recipe = recipeDao.getById(5);
+        User user = recipe.getUser();
+        int userId = user.getId();
 
-        userDao.delete(user);
-        assertNull(userDao.getById(6));
+        recipeDao.delete(recipe);
+        assertNull(recipeDao.getById(5));
 
-        List<Recipe> recipesWithoutUser = recipeDao.findByPropertyEqual("user", user);
-        assertEquals(0, recipesWithoutUser.size());
+        assertNotNull(userDao.getById(userId));
     }
 }

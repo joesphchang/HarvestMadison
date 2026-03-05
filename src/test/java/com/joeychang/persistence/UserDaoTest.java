@@ -1,5 +1,7 @@
 package com.joeychang.persistence;
 
+import com.joeychang.entity.Recipe;
+import com.joeychang.entity.SeasonalIngredient;
 import com.joeychang.entity.User;
 import com.joeychang.util.Database;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +20,14 @@ public class UserDaoTest {
      * The User dao.
      */
     GenericDao<User> userDao;
+    /**
+     * The Recipe dao.
+     */
+    GenericDao<Recipe> recipeDao;
+    /**
+     * The Seasonal ingredient dao.
+     */
+    GenericDao<SeasonalIngredient> seasonalIngredientDao;
 
     /**
      * Sets up.
@@ -27,6 +37,8 @@ public class UserDaoTest {
         Database database = Database.getInstance();
         database.runSQL("cleanDB.sql");
         userDao = new GenericDao<>(User.class);
+        recipeDao = new GenericDao<>(Recipe.class);
+        seasonalIngredientDao = new GenericDao<>(SeasonalIngredient.class);
     }
 
     /**
@@ -100,6 +112,13 @@ public class UserDaoTest {
      */
     @Test
     void deleteUserWithRecipe() {
+        User user = userDao.getById(6);
+        int recipeCountBefore = recipeDao.findByPropertyEqual("user", user).size();
 
+        userDao.delete(user);
+        assertNull(userDao.getById(6));
+
+        List<Recipe> recipesWithoutUser = recipeDao.findByPropertyEqual("user", user);
+        assertEquals(0, recipesWithoutUser.size());
     }
 }
