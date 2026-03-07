@@ -4,23 +4,23 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <a class="navbar-brand" href="<c:url value="/index.jsp" />">Harvest Madison</a>
+        <a class="navbar-brand" href="<c:url value="/home" />">Harvest Madison</a>
         <div class="me-auto"></div>
 
-        <form class="d-flex mx-auto w-50" role="search" action="searchRecipes" method="GET">
+        <form class="d-flex mx-auto w-50" role="search" action="${pageContext.request.contextPath}/search" method="GET">
             <input class="form-control me-2" type="text" name="searchTerm" placeholder="Search Recipes">
             <button class="btn btn-outline-success" type="submit" name="submit" value="search">Search</button>
         </form>
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/index.jsp' />">Home</a>
+                <a class="nav-link" href="<c:url value='/home' />">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/listOfRecipes' />">Recipes</a>
+                <a class="nav-link" href="<c:url value='/recipes' />">Recipes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/about.jsp' />">About</a>
+                <a class="nav-link" href="<c:url value='/about' />">About</a>
             </li>
 
             <c:choose>

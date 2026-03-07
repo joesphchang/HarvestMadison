@@ -40,6 +40,9 @@
                     <td>${recipe.description}</td>
                     <td>${recipe.createdOn}</td>
                     <td>${recipe.ingredientsText}</td>
+                    <td>
+                        <a href="recipeDetails?id=${recipe.id}" class="btn btn-sm btn-info">View</a>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

@@ -54,10 +54,11 @@ public class Recipe {
      * @param user               the user
      * @param seasonalIngredient the seasonal ingredient
      */
-    public Recipe(String recipeName, String description, String ingredientsText, User user, SeasonalIngredient seasonalIngredient) {
+    public Recipe(String recipeName, String description, String ingredientsText, String imageURL, User user, SeasonalIngredient seasonalIngredient) {
         this.recipeName = recipeName;
         this.description = description;
         this.ingredientsText = ingredientsText;
+        this.imageURL = imageURL;
         this.user = user;
         this.seasonalIngredient = seasonalIngredient;
     }

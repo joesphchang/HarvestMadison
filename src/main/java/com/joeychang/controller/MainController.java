@@ -13,7 +13,10 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/home", "/about"})
+/**
+ * The type Main controller.
+ */
+@WebServlet(urlPatterns = {"/home", "/about", ""})
 public class MainController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

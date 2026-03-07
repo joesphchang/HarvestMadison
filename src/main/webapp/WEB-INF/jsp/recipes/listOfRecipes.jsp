@@ -22,7 +22,7 @@
                 <td><strong>${recipe.recipeName}</strong></td>
                 <td><fmt:formatDate value="${recipe.createdOn}" pattern="MMM d, yyyy" /></td>
                 <td>
-                    <a href="viewRecipe?id=${recipe.id}" class="btn btn-sm btn-info">View</a>
+                    <a href="recipeDetails?id=${recipe.id}" class="btn btn-sm btn-info">View</a>
                 </td>
             </tr>
         </c:forEach>

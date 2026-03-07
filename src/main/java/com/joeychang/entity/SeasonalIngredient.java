@@ -6,6 +6,9 @@ import org.hibernate.annotations.GenericGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Seasonal ingredient.
+ */
 @Entity(name = "SeasonalIngredient")
 @Table(name = "seasonal_ingredient")
 public class SeasonalIngredient {
@@ -29,8 +32,19 @@ public class SeasonalIngredient {
     @OneToMany(mappedBy = "seasonalIngredient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Recipe> recipes = new ArrayList<>();
 
+    /**
+     * Instantiates a new Seasonal ingredient.
+     */
     public SeasonalIngredient() {}
 
+    /**
+     * Instantiates a new Seasonal ingredient.
+     *
+     * @param id                     the id
+     * @param seasonalIngredientName the seasonal ingredient name
+     * @param startDate              the start date
+     * @param endDate                the end date
+     */
     public SeasonalIngredient(int id, String seasonalIngredientName, int startDate, int endDate) {
         this.id = id;
         this.seasonalIngredientName = seasonalIngredientName;
@@ -77,42 +91,92 @@ public class SeasonalIngredient {
     }
 
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets seasonal ingredient name.
+     *
+     * @return the seasonal ingredient name
+     */
     public String getSeasonalIngredientName() {
         return seasonalIngredientName;
     }
 
+    /**
+     * Sets seasonal ingredient name.
+     *
+     * @param seasonalIngredientName the seasonal ingredient name
+     */
     public void setSeasonalIngredientName(String seasonalIngredientName) {
         this.seasonalIngredientName = seasonalIngredientName;
     }
 
+    /**
+     * Gets start date.
+     *
+     * @return the start date
+     */
     public int getStartDate() {
         return startDate;
     }
 
+    /**
+     * Sets start date.
+     *
+     * @param startDate the start date
+     */
     public void setStartDate(int startDate) {
         this.startDate = startDate;
     }
 
+    /**
+     * Gets end date.
+     *
+     * @return the end date
+     */
     public int getEndDate() {
         return endDate;
     }
 
+    /**
+     * Sets end date.
+     *
+     * @param endDate the end date
+     */
     public void setEndDate(int endDate) {
         this.endDate = endDate;
     }
 
+    /**
+     * Gets image url.
+     *
+     * @return the image url
+     */
     public String getImageURL() {
         return imageURL;
     }
 
+    /**
+     * Sets image url.
+     *
+     * @param imageURL the image url
+     */
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
