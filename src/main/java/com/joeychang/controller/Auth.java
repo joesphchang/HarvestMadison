@@ -1,4 +1,4 @@
 package com.joeychang.controller;
 
-public class UserController {
+public class Auth {
 }

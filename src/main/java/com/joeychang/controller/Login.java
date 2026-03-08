@@ -1,4 +1,4 @@
 package com.joeychang.controller;
 
-public class AdminController {
+public class Login {
 }
