@@ -1,53 +1,51 @@
 <%@include file="../../../taglib.jsp"%>
 <%--@elvariable id="recipes" type="java.util.List<com.joeychang.entity.Recipe>"--%>
 <c:set var="title" value="Search Results" />
-
-<script type="text/javascript" class="init">
-    $(document).ready( function() {
-        $('#recipeTable').DataTable();
-    })
-</script>
 <!DOCTYPE html>
 <html>
 <c:import url="../common/head.jsp" />
 <body>
 <c:import url="../common/navigation.jsp" />
-    <h2>Search Results: </h2>
-        <table class="recipe-grid-table">
-            <thead>
-            <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Created On</th>
-                <th>Ingredients</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="recipe" items="${recipes}">
-                <tr>
-                    <td>
-                        <c:choose>
-                            <c:when test="${not empty recipe.imageURL}">
-                                <img src="${recipe.imageURL}" alt="${recipe.recipeName}" style="max-width: 100px; height: auto;">
-                            </c:when>
-                            <c:otherwise>
-                                <img src="https://i.imgur.com/BpAX3hE.jpeg" alt="No image available" style="max-width: 100px;">
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
-                    <td>${recipe.recipeName}</td>
-                    <td>${recipe.description}</td>
-                    <td>${recipe.createdOn}</td>
-                    <td>${recipe.ingredientsText}</td>
-                    <td>
-                        <a href="recipeDetails?id=${recipe.id}" class="btn btn-sm btn-info">View</a>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+<div class="container mt-4">
+    <h2 class="mb-4">Search Results for: <span class="text-success">${param.searchTerm}</span></h2>
+    <div class="container mt-4">
+        <h2 class="mb-4">${title}</h2>
+
+        <c:forEach var="recipe" items="${recipes}">
+            <div class="row g-0 mb-4 bg-white border rounded-3 shadow-sm align-items-stretch" style="min-height: 220px;">
+
+                <div class="col-md-3 p-0">
+                    <img src="${not empty recipe.imageURL ? recipe.imageURL : 'https://i.imgur.com/BpAX3hE.jpeg'}"
+                         class="img-fluid rounded-start-3"
+                         alt="${recipe.recipeName}"
+                         style="height: 100%; width: 100%; object-fit: cover;">
+                </div>
+
+                <div class="col-md-6 px-4 py-5 d-flex flex-column justify-content-center">
+                    <h3 class="fw-bold mb-2">${recipe.recipeName}</h3>
+                    <p class="text-secondary mb-1">${recipe.description}</p>
+                    <div class="small text-muted italic">
+                        <i class="bi bi-tag"></i> ${recipe.seasonalIngredient.seasonalIngredientName}
+                    </div>
+                </div>
+
+                <div class="col-md-3 p-4 text-end border-start d-flex flex-column justify-content-center align-items-end">
+                    <div class="small text-muted mb-3">Prep: X min | Cook: Y min</div>
+                    <a href="recipeDetails?id=${recipe.id}"
+                       class="btn btn-dark rounded-pill px-5 py-2 fw-bold">
+                        View Recipe
+                    </a>
+                </div>
+            </div>
+        </c:forEach>
+
+        <c:if test="${empty recipes}">
+            <div class="text-center py-5 border border-dashed">
+                <p class="text-muted">No recipes found for this harvest.</p>
+            </div>
+        </c:if>
+    </div>
+</div>
 <c:import url="../common/footer.jsp" />
 </body>
 </html>
-
