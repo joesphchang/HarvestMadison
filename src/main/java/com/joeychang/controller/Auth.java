@@ -39,11 +39,9 @@ import java.util.stream.Collectors;
 @WebServlet(
         urlPatterns = {"/auth"}
 )
-// TODO if something goes wrong it this process, route to an error page. Currently, errors are only caught and logged.
 /**
  * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
  */
-
 public class Auth extends HttpServlet implements PropertiesLoader {
     Properties properties;
     String CLIENT_ID;
@@ -57,13 +55,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        loadProperties();
-        loadKey();
-    }
-
     /**
      * Gets the auth code from the request and exchanges it for a token containing user info.
      * @param req servlet request
@@ -74,22 +65,25 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
+        Properties props = (Properties) getServletContext().getAttribute("cognitoProperties");
         String userName = null;
 
-        if (authCode == null) {
-            //TODO forward to an error page or back to the login
+        if (authCode.isEmpty() || props.isEmpty()) {
+            logger.warn("Authentication failed: Missing code or configuration properties.");
+            resp.sendRedirect("login");
+            return;
         } else {
-            HttpRequest authRequest = buildAuthRequest(authCode);
             try {
+                HttpRequest authRequest = buildAuthRequest(authCode);
                 TokenResponse tokenResponse = getToken(authRequest);
                 userName = validate(tokenResponse);
                 req.setAttribute("userName", userName);
             } catch (IOException e) {
-                logger.error("Error getting or validating the token: " + e.getMessage(), e);
-                //TODO forward to an error page
+                logger.error("Error getting or validating the token: {}", e.getMessage(), e);
+                resp.sendRedirect("error.jsp");
             } catch (InterruptedException e) {
-                logger.error("Error getting token from Cognito oauth url " + e.getMessage(), e);
-                //TODO forward to an error page
+                logger.error("Error getting token from Cognito oauth url {}", e.getMessage(), e);
+                resp.sendRedirect("error.jsp");
             }
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
@@ -111,12 +105,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         response = client.send(authRequest, HttpResponse.BodyHandlers.ofString());
 
 
-        logger.debug("Response headers: " + response.headers().toString());
-        logger.debug("Response body: " + response.body().toString());
+        logger.debug("Response headers: {}", response.headers().toString());
+        logger.debug("Response body: {}", response.body().toString());
 
         ObjectMapper mapper = new ObjectMapper();
         TokenResponse tokenResponse = mapper.readValue(response.body().toString(), TokenResponse.class);
-        logger.debug("Id token: " + tokenResponse.getIdToken());
+        logger.debug("Id token: {}", tokenResponse.getIdToken());
 
         return tokenResponse;
 
@@ -137,20 +131,32 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         String keyId = tokenHeader.getKid();
         String alg = tokenHeader.getAlg();
 
-        // todo pick proper key from the two - it just so happens that the first one works for my case
+        KeysItem matchingKey = null;
+
+        for (KeysItem key : jwks.getKeys()) {
+            if (key.getKid().equals(keyId)) {
+                matchingKey = key;
+                break;
+            }
+        }
+
+        if (matchingKey == null) {
+            logger.error("No matching public keys found in JWKS for kid: {}", keyId);
+        }
         // Use Key's N and E
         BigInteger modulus = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getN()));
         BigInteger exponent = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getE()));
 
-        // TODO the following is "happy path", what if the exceptions are caught?
         // Create a public key
         PublicKey publicKey = null;
         try {
             publicKey = KeyFactory.getInstance("RSA").generatePublic(new RSAPublicKeySpec(modulus, exponent));
         } catch (InvalidKeySpecException e) {
-            logger.error("Invalid Key Error " + e.getMessage(), e);
+            logger.error("Invalid Key Error {}", e.getMessage(), e);
+            return null;
         } catch (NoSuchAlgorithmException e) {
-            logger.error("Algorithm Error " + e.getMessage(), e);
+            logger.error("Algorithm Error {}", e.getMessage(), e);
+            return null;
         }
 
         // get an algorithm instance
@@ -167,13 +173,11 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         // Verify the token
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
         String userName = jwt.getClaim("cognito:username").asString();
-        logger.debug("here's the username: " + userName);
-
-        logger.debug("here are all the available claims: " + jwt.getClaims());
+        logger.debug("here's the username: {}", userName);
+        logger.debug("here are all the available claims: {}", jwt.getClaims());
 
         // TODO decide what you want to do with the info!
         // for now, I'm just returning username for display back to the browser
-
         return userName;
     }
 
@@ -222,33 +226,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             File jwksFile = new File("jwks.json");
             FileUtils.copyURLToFile(jwksURL, jwksFile);
             jwks = mapper.readValue(jwksFile, Keys.class);
-            logger.debug("Keys are loaded. Here's e: " + jwks.getKeys().get(0).getE());
+            logger.debug("Keys are loaded. Here's e: {}", jwks.getKeys().get(0).getE());
         } catch (IOException ioException) {
-            logger.error("Cannot load json..." + ioException.getMessage(), ioException);
+            logger.error("Cannot load json...{}", ioException.getMessage(), ioException);
         } catch (Exception e) {
-            logger.error("Error loading json" + e.getMessage(), e);
+            logger.error("Error loading json{}", e.getMessage(), e);
         }
     }
 
-    /**
-     * Read in the cognito props file and get/set the client id, secret, and required urls
-     * for authenticating a user.
-     */
-    // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
-    private void loadProperties() {
-        try {
-            properties = loadProperties("/cognito.properties");
-            CLIENT_ID = properties.getProperty("client.id");
-            CLIENT_SECRET = properties.getProperty("client.secret");
-            OAUTH_URL = properties.getProperty("oauthURL");
-            LOGIN_URL = properties.getProperty("loginURL");
-            REDIRECT_URL = properties.getProperty("redirectURL");
-            REGION = properties.getProperty("region");
-            POOL_ID = properties.getProperty("poolId");
-        } catch (IOException ioException) {
-            logger.error("Cannot load properties..." + ioException.getMessage(), ioException);
-        } catch (Exception e) {
-            logger.error("Error loading properties" + e.getMessage(), e);
-        }
-    }
 }

@@ -29,9 +29,6 @@ public class User {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    @Column(name = "date_of_birth")
-    private LocalDate dateOfBirth;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Recipe> recipes = new ArrayList<>();
 
@@ -165,33 +162,6 @@ public class User {
         this.id = id;
     }
 
-    /**
-     * Gets date of birth.
-     *
-     * @return the date of birth
-     */
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    /**
-     * Sets date of birth.
-     *
-     * @param dateOfBirth the date of birth
-     */
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    /**
-     * Gets age.
-     *
-     * @return the age
-     */
-    public int getAge() {
-
-        return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
-    }
 
 
     @Override
@@ -201,8 +171,6 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
                 ", id=" + id +
-                ", dateOfBirth=" + dateOfBirth +
-                ", age=" + getAge() +
                 '}';
     }
 }
