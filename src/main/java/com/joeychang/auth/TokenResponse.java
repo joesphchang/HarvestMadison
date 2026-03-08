@@ -1,4 +1,4 @@
-package edu.matc.auth;
+package com.joeychang.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
