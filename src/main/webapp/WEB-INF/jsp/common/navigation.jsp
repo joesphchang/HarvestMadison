@@ -30,7 +30,7 @@
                     </li>
                 </c:when>
                 <c:otherwise>
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/WEB-INF/jsp/auth/signIn.jsp' />">Sign In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">">Sign In</a></li>
                     <li class="nav-item"><a class="nav-link" href="<c:url value='/WEB-INF/jsp/auth/signUp.jsp' />">Sign Up</a></li>
                 </c:otherwise>
             </c:choose>
