@@ -66,29 +66,36 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
         Properties props = (Properties) getServletContext().getAttribute("cognitoProperties");
-        String userName = null;
 
-        if (authCode.isEmpty() || props.isEmpty()) {
+        if (authCode == null || authCode.isEmpty() || props == null) {
             logger.warn("Authentication failed: Missing code or configuration properties.");
             resp.sendRedirect("login");
             return;
-        } else {
-            try {
-                HttpRequest authRequest = buildAuthRequest(authCode);
-                TokenResponse tokenResponse = getToken(authRequest);
-                userName = validate(tokenResponse);
-                req.setAttribute("userName", userName);
-            } catch (IOException e) {
-                logger.error("Error getting or validating the token: {}", e.getMessage(), e);
-                resp.sendRedirect("error.jsp");
-            } catch (InterruptedException e) {
-                logger.error("Error getting token from Cognito oauth url {}", e.getMessage(), e);
-                resp.sendRedirect("error.jsp");
-            }
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
-        dispatcher.forward(req, resp);
 
+        CLIENT_ID = props.getProperty("client.id");
+        CLIENT_SECRET = props.getProperty("client.secret");
+        OAUTH_URL = props.getProperty("oauthURL");
+        REDIRECT_URL = props.getProperty("redirectURL");
+        REGION = props.getProperty("region");
+        POOL_ID = props.getProperty("poolId");
+
+        try {
+            if (jwks == null) {
+                loadKey();
+            }
+
+            HttpRequest authRequest = buildAuthRequest(authCode, props);
+            TokenResponse tokenResponse = getToken(authRequest);
+            String userName = validate(tokenResponse, props);
+
+            req.getSession().setAttribute("userName", userName);
+            resp.sendRedirect("home");
+
+        } catch (IOException | InterruptedException e) {
+            logger.error("Error during auth: {}", e.getMessage(), e);
+            resp.sendRedirect("error.jsp");
+        }
     }
 
     /**
@@ -103,7 +110,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         HttpResponse<?> response = null;
 
         response = client.send(authRequest, HttpResponse.BodyHandlers.ofString());
-
 
         logger.debug("Response headers: {}", response.headers().toString());
         logger.debug("Response body: {}", response.body().toString());
@@ -123,7 +129,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @return
      * @throws IOException
      */
-    private String validate(TokenResponse tokenResponse) throws IOException {
+    private String validate(TokenResponse tokenResponse, Properties props) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         CognitoTokenHeader tokenHeader = mapper.readValue(CognitoJWTParser.getHeader(tokenResponse.getIdToken()).toString(), CognitoTokenHeader.class);
 
@@ -172,12 +178,15 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         // Verify the token
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
-        String userName = jwt.getClaim("cognito:username").asString();
+        String userName = jwt.getClaim("email").asString();
         logger.debug("here's the username: {}", userName);
         logger.debug("here are all the available claims: {}", jwt.getClaims());
+        logger.debug("Final Username for Navbar: {}", userName);
 
-        // TODO decide what you want to do with the info!
-        // for now, I'm just returning username for display back to the browser
+        if (userName != null && userName .contains("@")) {
+            userName = userName.split("@")[0];
+        }
+
         return userName;
     }
 
@@ -186,15 +195,20 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @param authCode auth code received from Cognito as part of the login process
      * @return the constructed oauth request
      */
-    private HttpRequest buildAuthRequest(String authCode) {
-        String keys = CLIENT_ID + ":" + CLIENT_SECRET;
+    private HttpRequest buildAuthRequest(String authCode, Properties props) {
+        String clientId = props.getProperty("client.id");
+        String clientSecret = props.getProperty("client.secret");
+        String oauthUrl = props.getProperty("oauthURL");
+        String redirectUri = props.getProperty("redirectURL");
+
+        String keys = clientId + ":" + clientSecret;
 
         HashMap<String, String> parameters = new HashMap<>();
         parameters.put("grant_type", "authorization_code");
-        parameters.put("client-secret", CLIENT_SECRET);
-        parameters.put("client_id", CLIENT_ID);
+        parameters.put("client-secret", clientSecret);
+        parameters.put("client_id", clientId);
         parameters.put("code", authCode);
-        parameters.put("redirect_uri", REDIRECT_URL);
+        parameters.put("redirect_uri", redirectUri);
 
         String form = parameters.keySet().stream()
                 .map(key -> key + "=" + URLEncoder.encode(parameters.get(key), StandardCharsets.UTF_8))
@@ -202,10 +216,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         String encoding = Base64.getEncoder().encodeToString(keys.getBytes());
 
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(OAUTH_URL))
+        return HttpRequest.newBuilder().uri(URI.create(oauthUrl))
                 .headers("Content-Type", "application/x-www-form-urlencoded", "Authorization", "Basic " + encoding)
                 .POST(HttpRequest.BodyPublishers.ofString(form)).build();
-        return request;
     }
 
     /**

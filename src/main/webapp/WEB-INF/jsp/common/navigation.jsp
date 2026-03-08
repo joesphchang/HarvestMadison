@@ -24,14 +24,18 @@
             </li>
 
             <c:choose>
-                <c:when test="${not empty sessionScope.user}">
+                <c:when test="${not empty sessionScope.userName}">
                     <li class="nav-item">
-                        <span class="nav-link">User: ${sessionScope.user.userName}</span>
+                        <span class="nav-link text-success">Welcome, ${sessionScope.userName}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/logout">Sign Out</a>
                     </li>
                 </c:when>
                 <c:otherwise>
-                    <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">">Sign In</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/WEB-INF/jsp/auth/signUp.jsp' />">Sign Up</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/login">Sign In</a>
+                    </li>
                 </c:otherwise>
             </c:choose>
         </ul>
