@@ -88,3 +88,16 @@ Updated list from March 3rd:
 - ERD Diagram (Done)
 - Fully Tested Each Dao (Done)
 - Implemented GenericDao (Done)
+
+### March 8th, 2026 "Phew, what a week."
+
+Today and the previous days, I began tackling user auth and displaying the seasonal ingredients. After achieving a good
+front-end ui and accessing my database to display the monthly ingredient. I feel like I'm closer to my MVP. I'm curious
+on how I'm going to approach Create, Update, Delete, and Read when I introduce my API. I may have to go back and mess around
+with my database again to figure out Recipes and get a handle on what I actually need for my Recipe database. Reviewing and
+comparing my Recipe table to Spoonacular, I may need to add in Recipe Information, a Max Ready Time, Min Servings and a 
+Max Servings. I've been wondering this entire time, how I would process the amount of ingredients or should I plug that in
+within my Recipe Tables, like 1 Tbsp Sugar, 2 Cups of Corn, etc, etc.. 
+
+At the moment, we have a win. A win where I can be proud. I look forward to what I can achieve next, as each day/week seems
+to change my course on what my application would become. 
