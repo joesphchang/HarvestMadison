@@ -3,7 +3,9 @@ package com.joeychang.persistence;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+import com.joeychang.utilities.PropertiesLoader;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Expression;
@@ -18,10 +20,13 @@ import org.hibernate.Transaction;
  *
  * @param <T> the type parameter
  */
-public class GenericDao<T> {
+public class GenericDao<T> implements PropertiesLoader {
 
     private Class<T> type;
     private final Logger logger = LogManager.getLogger(this.getClass());
+
+    // Properties
+    //    private Properties properties;
 
     /**
      * Instantiates a new Generic dao.
@@ -30,6 +35,13 @@ public class GenericDao<T> {
      */
     public GenericDao(Class<T> type) {
         this.type = type;
+
+        try {
+            Properties properties = loadProperties("/database.properties");
+            logger.info("Successfully loaded database properties for {}", type.getSimpleName());
+        } catch (Exception exception) {
+            logger.error("Failed to load database properties within GenericDao", exception);
+        }
     }
 
     private Session getSession() {
@@ -78,7 +90,6 @@ public class GenericDao<T> {
         transaction.commit();
         session.close();
     }
-
 
     /**
      * Insert int.
