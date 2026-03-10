@@ -44,9 +44,20 @@
     - [X] Set up AWS RDS (MySQL) and update production properties.
     - [X] Deploy the .war file to AWS Elastic Beanstalk.
     - [X] Verify database connection in the cloud environment.
-    - [ ] Set up Incoginto
-    - [ ] Work on Home Page and get Seasonal Ingredient + Recipes connected to show.
-    - [ ] Update weekly reflection/time log.
+    - [X] Set up Incoginto
+    - [X] Work on Home Page and get Seasonal Ingredient + Recipes connected to show.
+    - [X] Update weekly reflection/time log.
+
+### Week 8 - RESTful Web Services & Recipe Details 
+    Goal: Introduce the new Ingredients Table, work on RestFUL Web Services and Implement it within the application.
+            Work on Recipe Details Page
+    - [ ] Implement RestFUL Web Services
+    - [ ] Get Data from Spoonacular
+    - [ ] Work on getting Recipe Details Page
+    - [ ] Start on full CRUD on a recipes per user
+    - [ ] Show data and match it to database 
+    - [ ] Work on UI for Recipe Details
+    - [ ] Update weekly reflection/time log
 
 ### Week 8 - 12: Authentication & Checkpoint 3
     Focus: Security and User-Specific CRUD
