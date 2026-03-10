@@ -27,12 +27,13 @@ import java.io.IOException;
 public class RecipeController extends HttpServlet {
 
     private static final Logger logger = LogManager.getLogger(RecipeController.class);
+    private final String JSP = "/WEB-INF/jsp/recipes/";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GenericDao<Recipe> recipeDao = new GenericDao<>(Recipe.class);
         String path = req.getServletPath();
-        String destination = "/WEB-INF/jsp/recipes/listOfRecipes.jsp";
+        String defaultView = "listOfRecipes.jsp";
 
         logger.debug("Entering doGet for path: {}", path);
 
@@ -43,7 +44,7 @@ public class RecipeController extends HttpServlet {
                     logger.info("Searching for recipes with term: {}", searchTerm);
                     req.setAttribute("recipes", recipeDao.findByPropertyLike("recipeName", searchTerm));
                 }
-                destination = "/WEB-INF/jsp/recipes/searchRecipeResults.jsp";
+                defaultView = "searchRecipeResults.jsp";
             } else if (path.equals("/recipeDetails")) {
                 String id = req.getParameter("id");
                 try {
@@ -52,12 +53,12 @@ public class RecipeController extends HttpServlet {
                 } catch (NumberFormatException e) {
                     logger.warn("User provided invalid Recipe ID format: '{}'", id);
                 }
-                destination = "/WEB-INF/jsp/recipes/recipeDetails.jsp";
+                defaultView = "recipeDetails.jsp";
             } else {
                 logger.info("Retrieving all recipes");
                 req.setAttribute("recipes", recipeDao.getAll());
             }
-            req.getRequestDispatcher(destination).forward(req, resp);
+            req.getRequestDispatcher(JSP + defaultView).forward(req, resp);
         } catch (Exception exception) {
             logger.error("Critical failure in RecipeController at path: {}", path, exception);
             req.setAttribute("errorMessage", "Our chefs are having trouble in the kitchen. Please try again later.");
