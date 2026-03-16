@@ -24,3 +24,6 @@
         <c:import url="../common/footer.jsp" />
     </body>
 </html>
+
+
+apiKey=e138a8cd94534ba4b27d6b6b0d39912d
