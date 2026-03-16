@@ -26,9 +26,14 @@ public class StartupListener implements ServletContextListener, PropertiesLoader
             Properties dbProps = loadProperties("/database.properties");
             context.setAttribute("databaseProperties", dbProps);
 
+            Properties spoonProps = loadProperties("/spoonacular.properties");
+            context.setAttribute("spoonacularProperties", spoonProps);
+
             logger.info("Application properties successfully loaded into ServletContext.");
+            logger.info("Spoonacular properties loaded successfully.");
         } catch (Exception e) {
             logger.error("Startup Failure: Could not load properties. App may malfunction.", e);
+            logger.error("Could not load Spoonacular properties", e);
         }
     }
 }

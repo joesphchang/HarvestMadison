@@ -51,3 +51,6 @@ harvestmadison.log
 src/main/resources/cognito.properties
 jwks.json
 https-instance.config
+
+# api key
+src/main/resources/spoonacular.properties
