@@ -10,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "ingredient")
 public class Ingredient {
 
-    @id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private int id;

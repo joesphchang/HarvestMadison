@@ -3,6 +3,8 @@ package com.joeychang.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The type Recipe.
@@ -38,6 +40,9 @@ public class Recipe {
     @JoinColumn(name = "seasonal_ingredient_id")
     private SeasonalIngredient seasonalIngredient;
 
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<RecipeIngredient> recipeIngredients = new HashSet<>();
+
     /**
      * Instantiates a new Recipe.
      */
@@ -51,6 +56,7 @@ public class Recipe {
      * @param recipeName         the recipe name
      * @param description        the description
      * @param ingredientsText    the ingredients text
+     * @param imageURL           the image url
      * @param user               the user
      * @param seasonalIngredient the seasonal ingredient
      */
@@ -205,6 +211,45 @@ public class Recipe {
      */
     public void setSeasonalIngredient(SeasonalIngredient seasonalIngredient) {
         this.seasonalIngredient = seasonalIngredient;
+    }
+
+
+    /**
+     * Gets recipe ingredients.
+     *
+     * @return the recipe ingredients
+     */
+    public Set<RecipeIngredient> getRecipeIngredients() {
+        return recipeIngredients;
+    }
+
+    /**
+     * Sets recipe ingredients.
+     *
+     * @param recipeIngredients the recipe ingredients
+     */
+    public void setRecipeIngredients(Set<RecipeIngredient> recipeIngredients) {
+        this.recipeIngredients = recipeIngredients;
+    }
+
+    /**
+     * Add recipe ingredient.
+     *
+     * @param recipeIngredient the recipe ingredient
+     */
+    public void addRecipeIngredient(RecipeIngredient recipeIngredient) {
+        recipeIngredients.add(recipeIngredient);
+        recipeIngredient.setRecipe(this);
+    }
+
+    /**
+     * Remove recipe ingredient.
+     *
+     * @param recipeIngredient the recipe ingredient
+     */
+    public void removeRecipeIngredient(RecipeIngredient recipeIngredient) {
+        recipeIngredients.remove(recipeIngredient);
+        recipeIngredient.setRecipe(null);
     }
 
     @Override

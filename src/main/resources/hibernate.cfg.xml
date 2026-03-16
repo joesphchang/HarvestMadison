@@ -20,6 +20,8 @@
         <mapping class="com.joeychang.entity.User"/>
         <mapping class="com.joeychang.entity.Recipe"/>
         <mapping class="com.joeychang.entity.SeasonalIngredient"/>
+        <mapping class="com.joeychang.entity.RecipeIngredient"/>
+        <mapping class="com.joeychang.entity.Ingredient"/>
 
     </session-factory>
 
