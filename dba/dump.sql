@@ -81,15 +81,17 @@ DROP TABLE IF EXISTS `recipe_ingredient`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `recipe_ingredient` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `quantity` int DEFAULT NULL,
   `unit` varchar(15) DEFAULT NULL,
   `recipe_id` int NOT NULL,
   `ingredient_id` int NOT NULL,
-  PRIMARY KEY (`recipe_id`,`ingredient_id`),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_recipe_ingredient` (`recipe_id`,`ingredient_id`),
   KEY `recipe_ingredient_ingredient_id_fk` (`ingredient_id`),
   CONSTRAINT `recipe_ingredient_ingredient_id_fk` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredient` (`id`),
   CONSTRAINT `recipe_ingredient_recipe_id_fk` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +100,7 @@ CREATE TABLE `recipe_ingredient` (
 
 LOCK TABLES `recipe_ingredient` WRITE;
 /*!40000 ALTER TABLE `recipe_ingredient` DISABLE KEYS */;
-INSERT INTO `recipe_ingredient` VALUES (3,'Whole',1,1),(4,'oz',1,2),(1,'Bunch',2,3),(3,'Cloves',2,4),(12,'oz',2,5),(2,'Cups',3,6),(1,'Each',3,7),(4,'Whole',4,1),(1,'tsp',4,8),(2,'tbsp',4,9),(6,'Whole',5,10),(1,'Cup',5,11),(2,'tsp',5,12),(1,'Bunch',6,13),(8,'Large',6,14),(4,'oz',6,15),(4,'Ears',7,16),(3,'Large',7,17),(1,'Cup',7,18),(2,'lbs',8,1),(2,'Cups',8,19),(1,'tsp',8,20),(2,'Whole',9,10),(2,'lbs',9,21),(1,'Cup',9,22),(4,'Cloves',10,4),(4,'Large',10,17),(6,'oz',10,23);
+INSERT INTO `recipe_ingredient` VALUES (1,3,'Whole',1,1),(2,4,'oz',1,2),(3,1,'Bunch',2,3),(4,3,'Cloves',2,4),(5,12,'oz',2,5),(6,2,'Cups',3,6),(7,1,'Each',3,7),(8,4,'Whole',4,1),(9,1,'tsp',4,8),(10,2,'tbsp',4,9),(11,6,'Whole',5,10),(12,1,'Cup',5,11),(13,2,'tsp',5,12),(14,1,'Bunch',6,13),(15,8,'Large',6,14),(16,4,'oz',6,15),(17,4,'Ears',7,16),(18,3,'Large',7,17),(19,1,'Cup',7,18),(20,2,'lbs',8,1),(21,2,'Cups',8,19),(22,1,'tsp',8,20),(23,2,'Whole',9,10),(24,2,'lbs',9,21),(25,1,'Cup',9,22),(26,4,'Cloves',10,4),(27,4,'Large',10,17),(28,6,'oz',10,23);
 /*!40000 ALTER TABLE `recipe_ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,4 +195,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-09 22:37:04
+-- Dump completed on 2026-03-15 22:37:18

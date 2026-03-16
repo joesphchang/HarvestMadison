@@ -9,5 +9,4 @@
 
         <c:import url="../common/footer.jsp" />
     </body>
-
 </html>

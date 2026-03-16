@@ -10,17 +10,22 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "recipe_ingredient")
 public class RecipeIngredient {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private int id;
+
     @Column(name = "quantity")
     private int quantity;
 
     @Column(name = "unit")
     private String unit;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
@@ -43,6 +48,26 @@ public class RecipeIngredient {
         this.unit = unit;
         this.recipe = recipe;
         this.ingredient = ingredient;
+    }
+
+    // --- Getters and Setters ---
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -120,10 +145,9 @@ public class RecipeIngredient {
     @Override
     public String toString() {
         return "RecipeIngredient{" +
-                "quantity=" + quantity +
+                "id=" + id +
+                ", quantity=" + quantity +
                 ", unit='" + unit + '\'' +
-                ", recipe=" + recipe +
-                ", ingredient=" + ingredient +
                 '}';
     }
 }
