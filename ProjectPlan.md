@@ -51,17 +51,17 @@
 ### Week 8 - RESTful Web Services & Recipe Details 
     Goal: Introduce the new Ingredients Table, work on RestFUL Web Services and Implement it within the application.
             Work on Recipe Details Page
-    - [ ] Implement RestFUL Web Services
-    - [ ] Get Data from Spoonacular
-    - [ ] Work on getting Recipe Details Page
+    - [X] Implement RestFUL Web Services
+    - [X] Get Data from Spoonacular
+    - [X] Work on getting Recipe Details Page
     - [ ] Start on full CRUD on a recipes per user
-    - [ ] Show data and match it to database 
-    - [ ] Work on UI for Recipe Details
-    - [ ] Update weekly reflection/time log
+    - [X] Show data and match it to database 
+    - [X] Work on UI for Recipe Details
+    - [X] Update weekly reflection/time log
 
 ### Week 8 - 12: Authentication & Checkpoint 3
     Focus: Security and User-Specific CRUD
-    - [ ] Implement Sign-In and Sign-Up logic utilizing UserDao
+    - [X] Implement Sign-In and Sign-Up logic utilizing UserDao
     - [ ] Implement Sign-Out story to securely terminate user sessions
     - [ ] Checkpoint 3 Due (Week 9): Deployed app with Authentication and at least one JSP displaying DB data
     - [ ] Create the "Personal Cookbook" functionality (CRUD operations for UserRecipe table)
