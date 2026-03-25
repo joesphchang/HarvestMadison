@@ -9,11 +9,22 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * The type User resource.
+ */
 @Path("/users")
 public class UserResource {
 
+    /**
+     * The User dao.
+     */
     GenericDao<User> userDao = new GenericDao<>(User.class);
 
+    /**
+     * Gets users.
+     *
+     * @return the users
+     */
     @GET
     @Produces("text/plain")
     public Response getUsers() {
@@ -26,6 +37,12 @@ public class UserResource {
         return Response.status(200).entity(output.toString()).build();
     }
 
+    /**
+     * Gets users by id.
+     *
+     * @param id the id
+     * @return the users by id
+     */
     @GET
     @Path("/search")
     @Produces("text/plain")
