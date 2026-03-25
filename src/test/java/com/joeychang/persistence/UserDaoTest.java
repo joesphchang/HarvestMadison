@@ -69,7 +69,7 @@ public class UserDaoTest {
      */
     @Test
    void insertUserSuccess() {
-        User userToInsert = new User("Liam", "Pullian", "lpullian");
+        User userToInsert = new User("Liam", "Pullian", "lpullian", "lpullian@madisoncollege.edu");
         int insertedUserId = userDao.insert(userToInsert);
         assertNotEquals(0, insertedUserId);
         User insertedUser = (User)userDao.getById(insertedUserId);
@@ -81,7 +81,7 @@ public class UserDaoTest {
      */
     @Test
     void deleteUser() {
-        User userToInsert = new User("Test", "User", "testuser");
+        User userToInsert = new User("Test", "User", "testuser", "testuser@madisoncollege.edu");
         int id = userDao.insert(userToInsert);
         User userToDelete = userDao.getById(id);
         userDao.delete(userToDelete);

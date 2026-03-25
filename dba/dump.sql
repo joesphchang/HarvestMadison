@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1    Database: harvest_madison
 -- ------------------------------------------------------
 -- Server version	8.4.7
-SET FOREIGN_KEY_CHECKS = 0;
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -144,7 +144,8 @@ CREATE TABLE `user` (
   `last_name` varchar(150) DEFAULT NULL,
   `user_name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `date_of_birth` date DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `cognito_sub` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -155,7 +156,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Joey','Chang','jchang','jchang123','1997-02-13'),(2,'Michelle','Smith','msmith','msmith123','1998-05-12'),(3,'Alice','Baker','abaker','abaker123','1995-10-20'),(4,'Bob','Cook','bcook','bcook123','1990-01-05'),(5,'Charlie','Farmer','cfarmer','cfarmer123','1988-03-29'),(6,'Nate','Grimes','ngrimes','ngrimes123','2001-07-15');
+INSERT INTO `user` VALUES (1,'Joey','Chang','jchang','Jchang123!','jchang@madisoncollege.edu','a11b5550-f081-70f8-834e-6661181f0021'),(2,'Michelle','Smith','msmith','Msmith123!','msmith@madisoncollege.edu','71eb9530-0081-708c-8f62-08fd54b325f2'),(3,'Alice','Baker','abaker','Abaker123!','abaker@madisoncollege.du','516b5550-f0e1-7042-3c8b-550569552da9'),(4,'Bob','Cook','bcook','Bcook123!','bcook@madisoncollege.edu','311b4520-80c1-7051-0d7d-ce2e03714099'),(5,'Charlie','Farmer','cfarmer','Cfarmer123!','cfarmer@madisoncollege.edu','11ebe540-0091-7091-266f-d74cf0ce1b4e'),(6,'Nate','Grimes','ngrimes','Ngrimes123!','ngrimes@madisoncollege.edu','71cb35f0-5061-7021-fa3b-a2318f5e154c');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,5 +195,5 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-SET FOREIGN_KEY_CHECKS = 1;
--- Dump completed on 2026-03-24 22:58:10
+
+-- Dump completed on 2026-03-24 23:55:51

@@ -24,6 +24,12 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "cognito_sub")
+    private String cognitoSub;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -43,11 +49,13 @@ public class User {
      * @param firstName the first name
      * @param lastName  the last name
      * @param userName  the user name
+     * @param email     the email for user
      */
-    public User(String firstName, String lastName, String userName) {
+    public User(String firstName, String lastName, String userName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
+        this.email = email;
     }
 
     /**
@@ -145,6 +153,42 @@ public class User {
     }
 
     /**
+     * Gets email.
+     *
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets email.
+     *
+     * @param email the email
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * Gets cognito sub.
+     *
+     * @return the cognito sub
+     */
+    public String getCognitoSub() {
+        return cognitoSub;
+    }
+
+    /**
+     * Sets cognito sub.
+     *
+     * @param cognitoSub the cognito sub
+     */
+    public void setCognitoSub(String cognitoSub) {
+        this.cognitoSub = cognitoSub;
+    }
+
+    /**
      * Gets id.
      *
      * @return the id
@@ -162,15 +206,16 @@ public class User {
         this.id = id;
     }
 
-
-
     @Override
     public String toString() {
         return "User{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", cognitoSub='" + cognitoSub + '\'' +
                 ", id=" + id +
+                ", recipes=" + recipes +
                 '}';
     }
 }

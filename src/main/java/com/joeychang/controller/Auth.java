@@ -6,6 +6,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.joeychang.auth.*;
+import com.joeychang.entity.User;
+import com.joeychang.persistence.GenericDao;
 import com.joeychang.utilities.PropertiesLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -87,10 +89,19 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
             HttpRequest authRequest = buildAuthRequest(authCode, props);
             TokenResponse tokenResponse = getToken(authRequest);
-            String userName = validate(tokenResponse, props);
+            User user = validate(tokenResponse, props);
 
-            req.getSession().setAttribute("userName", userName);
-            resp.sendRedirect("home");
+            if (user != null) {
+                String userName = user.getUserName();
+
+                req.getSession().setAttribute("userName", userName);
+                req.getSession().setAttribute("user", user);
+
+                resp.sendRedirect("home");
+            } else {
+                logger.error("User validation returned null.");
+                resp.sendRedirect("error.jsp");
+            }
 
         } catch (IOException | InterruptedException e) {
             logger.error("Error during auth: {}", e.getMessage(), e);
@@ -129,7 +140,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @return
      * @throws IOException
      */
-    private String validate(TokenResponse tokenResponse, Properties props) throws IOException {
+    private User validate(TokenResponse tokenResponse, Properties props) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         CognitoTokenHeader tokenHeader = mapper.readValue(CognitoJWTParser.getHeader(tokenResponse.getIdToken()).toString(), CognitoTokenHeader.class);
 
@@ -178,16 +189,24 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         // Verify the token
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
-        String userName = jwt.getClaim("email").asString();
-        logger.debug("here's the username: {}", userName);
-        logger.debug("here are all the available claims: {}", jwt.getClaims());
-        logger.debug("Final Username for Navbar: {}", userName);
+        String email = jwt.getClaim("email").asString();
+        String sub = jwt.getClaim("sub").asString();
+        String derivedName = email.split("@")[0];
 
-        if (userName != null && userName .contains("@")) {
-            userName = userName.split("@")[0];
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        List<User> users = userDao.findByPropertyEqual("cognitoSub", sub);
+        User user;
+
+        if (users.isEmpty()) {
+            // Create the user if they don't exist
+            user = new User(derivedName, "User", derivedName, email);
+            user.setCognitoSub(sub);
+            userDao.insert(user);
+        } else {
+            user = users.get(0);
         }
 
-        return userName;
+        return user;
     }
 
     /** Create the auth url and use it to build the request.
