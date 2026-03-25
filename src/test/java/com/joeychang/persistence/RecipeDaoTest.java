@@ -121,7 +121,7 @@ public class RecipeDaoTest {
         List<Recipe> beetRecipes = recipeDao.findByPropertyEqual("seasonalIngredient", beets);
 
         assertNotNull(beetRecipes);
-        assertEquals(3, beetRecipes.size());
+        assertEquals(4, beetRecipes.size());
     }
 
     /**
@@ -130,7 +130,7 @@ public class RecipeDaoTest {
     @Test
     void getAllRecipes() {
         List<Recipe> recipes = recipeDao.getAll();
-        assertEquals(10, recipes.size());
+        assertEquals(22, recipes.size());
     }
 
     /**
