@@ -1,5 +1,7 @@
 package com.joeychang.controller;
 import com.joeychang.entity.Recipe;
+import com.joeychang.entity.SeasonalIngredient;
+import com.joeychang.entity.User;
 import com.joeychang.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +24,11 @@ import java.io.IOException;
         // Maps to Search Results
         "/search",
         // Maps to Single Recipe
-        "/recipeDetails"
+        "/recipeDetails",
+        // Add new recipe
+        "/addReciope",
+        // Edit an existing recipe
+        "/editRecipe"
 })
 public class RecipeController extends HttpServlet {
 
@@ -54,6 +60,28 @@ public class RecipeController extends HttpServlet {
                     logger.warn("User provided invalid Recipe ID format: '{}'", id);
                 }
                 defaultView = "recipeDetails.jsp";
+            } else if (path.equals("/addRecipe")) {
+                GenericDao<SeasonalIngredient> ingredientDao = new GenericDao<>(SeasonalIngredient.class);
+                req.setAttribute("ingredients", ingredientDao.getAll());
+                defaultView = "recipeForm.jsp";
+
+            } else if (path.equals("/editRecipe")) {
+                String id = req.getParameter("id");
+                int recipeId = Integer.parseInt(id);
+                Recipe recipeToEdit = recipeDao.getById(recipeId);
+
+                User sessionUser = (User) req.getSession().getAttribute("user");
+
+                if (recipeToEdit != null && sessionUser != null &&
+                        recipeToEdit.getUser().getId() == sessionUser.getId()) {
+
+                    req.setAttribute("recipe", recipeToEdit);
+
+                    GenericDao<SeasonalIngredient> ingredientDao = new GenericDao<>(SeasonalIngredient.class);
+                    req.setAttribute("ingredients", ingredientDao.getAll());
+                    defaultView = "recipeForm.jsp";
+                }
+
             } else {
                 logger.info("Retrieving all recipes");
                 req.setAttribute("recipes", recipeDao.getAll());
