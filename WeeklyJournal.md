@@ -101,3 +101,20 @@ within my Recipe Tables, like 1 Tbsp Sugar, 2 Cups of Corn, etc, etc..
 
 At the moment, we have a win. A win where I can be proud. I look forward to what I can achieve next, as each day/week seems
 to change my course on what my application would become. 
+
+### March 25th, 2026 "We're half way there!"
+
+This week has been a bunch of catching up on school work after spring break. I did the due diligence of taking the time off 
+so I can catch a break from all the school work. This week is going to a great way, as now I'm gathering my logic to get started
+on Recipe Details. I have just styled my Recipe Details page to match what my screen designs look like. I'm pretty
+stoked on how this project is turning out. My goal for the end of week is to implement full CRUD where AWS is speaking with
+mySQL database. I have added in all my users within AWS Aurora/RDS and I utilized the "sub" UUID to sync my users together.
+Hopefully that'll be what I need to link my users together to be able to create locally and globally! 
+
+Project Checkpoint #3
+- ~~Deployed to AWS,~~
+- ~~At least one JSP that displays data from the database is implemented,~~
+- ~~Cognito authentication implemented,~~
+- ~~Add your deployed app url to the indie project list,~~
+- ~~Update your time log and project plan, AND~~
+~~- Create an issue on your repo and tag me when it's ready for review.~~

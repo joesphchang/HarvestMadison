@@ -54,9 +54,20 @@
     - [X] Implement RestFUL Web Services
     - [X] Get Data from Spoonacular
     - [X] Work on getting Recipe Details Page
-    - [ ] Start on full CRUD on a recipes per user
+    - [X] Start on full CRUD on a recipes per user
     - [X] Show data and match it to database 
     - [X] Work on UI for Recipe Details
+    - [X] Update weekly reflection/time log
+
+### Week 9 - Full CRUD - API
+    Goal: Introduce full CRUD for each user. Work on Recipe Details page and include a form that is shared amongst 
+    add and update. Get Data from API to show on Recipe List. Have Recipes seep into a new page after showing 10 recipes.
+    - [X] Recipe Detail 
+    - [X] Recipe Add/Update Form
+    - [ ] Connect AWS User -> mySQL User
+    - [ ] Insert Data from API onto Recipe List
+    - [ ] Have a randomizer for 3 Seasonal Ingredient Recipe
+    - [X] Check off list for Checkpoint #3
     - [X] Update weekly reflection/time log
 
 ### Week 8 - 12: Authentication & Checkpoint 3
