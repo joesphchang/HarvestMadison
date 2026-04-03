@@ -25,6 +25,7 @@
         <button class="btn btn-sm btn-outline-secondary">
             <i class="far fa-star"></i> Save to Favorites
         </button>
+        <a href="<c:url value='/editRecipe' />"></a>
     </div>
 
     <hr>

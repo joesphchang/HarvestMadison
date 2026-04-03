@@ -26,14 +26,14 @@ import java.io.IOException;
         // Maps to Single Recipe
         "/recipeDetails",
         // Add new recipe
-        "/addReciope",
+        "/addRecipe",
         // Edit an existing recipe
         "/editRecipe"
 })
 public class RecipeController extends HttpServlet {
 
     private static final Logger logger = LogManager.getLogger(RecipeController.class);
-    private final String JSP = "/WEB-INF/jsp/recipes/";
+    private final String JSP = "/jsp/recipes/";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -90,7 +90,7 @@ public class RecipeController extends HttpServlet {
         } catch (Exception exception) {
             logger.error("Critical failure in RecipeController at path: {}", path, exception);
             req.setAttribute("errorMessage", "Our chefs are having trouble in the kitchen. Please try again later.");
-            req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
         }
     }
 }

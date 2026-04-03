@@ -92,9 +92,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             User user = validate(tokenResponse, props);
 
             if (user != null) {
-                String userName = user.getUserName();
-
-                req.getSession().setAttribute("userName", userName);
                 req.getSession().setAttribute("user", user);
 
                 resp.sendRedirect("home");

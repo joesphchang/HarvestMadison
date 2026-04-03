@@ -7,7 +7,11 @@
 <body>
 <c:import url="../common/navigation.jsp" />
 <div class="container mt-4">
-    <h2 class="mb-4">${title}</h2>
+
+    <div>
+        <h2 class="mb-4">${title}</h2>
+        <a href="<c:url value='/addRecipe' />">Add Recipe</a>
+    </div>
 
     <c:forEach var="recipe" items="${recipes}">
         <div class="row g-0 mb-4 bg-white border rounded-3 shadow-sm align-items-stretch" style="min-height: 220px;">

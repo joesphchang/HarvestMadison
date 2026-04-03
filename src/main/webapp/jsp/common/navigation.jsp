@@ -24,9 +24,9 @@
             </li>
 
             <c:choose>
-                <c:when test="${not empty sessionScope.userName}">
+                <c:when test="${not empty sessionScope.user}">
                     <li class="nav-item">
-                        <span class="nav-link text-success">Welcome, ${sessionScope.userName}</span>
+                        <span class="nav-link text-success">Welcome, ${sessionScope.user.userName}</span>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/logout">Sign Out</a>
