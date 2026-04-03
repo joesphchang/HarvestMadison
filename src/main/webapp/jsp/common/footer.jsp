@@ -1,4 +1,4 @@
-<%@include file="../../../taglib.jsp"%>
+<%@include file="../../taglib.jsp"%>
 <%@ page import="java.util.Date" %>
 <!DOCTYPE html>
 <html>

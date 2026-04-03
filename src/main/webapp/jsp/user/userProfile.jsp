@@ -1,4 +1,4 @@
-<%@include file="../../../taglib.jsp"%>
+<%@include file="../../taglib.jsp"%>
 <c:set var="title" value="User Profile" />
 <!DOCTYPE html>
 <html>

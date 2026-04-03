@@ -1,4 +1,4 @@
-<%@include file="../../../taglib.jsp"%>
+<%@include file="../../taglib.jsp"%>
 <%--@elvariable id="recipes" type="java.util.List<com.joeychang.entity.Recipe>"--%>
 <c:set var="title" value="All Harvest Recipes" />
 <!DOCTYPE html>
