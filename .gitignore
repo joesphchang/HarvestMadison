@@ -54,3 +54,4 @@ https-instance.config
 
 # api key
 src/main/resources/spoonacular.properties
+harvest-madison-key.pem
