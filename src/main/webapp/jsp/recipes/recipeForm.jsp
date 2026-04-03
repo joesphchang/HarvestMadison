@@ -25,6 +25,11 @@
         </div>
 
         <div class="mb-3">
+            <label>Image URL</label>
+            <input type="text" name="image-url" class="form-control" value="${recipe.imageURL}" required>
+        </div>
+
+        <div class="mb-3">
             <label class="form-label">Seasonal Ingredient</label>
             <select name="ingredientId" class="form-select">
                 <c:forEach var="ingredient" items="${ingredient}">
