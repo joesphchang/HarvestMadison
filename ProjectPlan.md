@@ -64,7 +64,7 @@
     add and update. Get Data from API to show on Recipe List. Have Recipes seep into a new page after showing 10 recipes.
     - [X] Recipe Detail 
     - [X] Recipe Add/Update Form
-    - [ ] Connect AWS User -> mySQL User
+    - [X] Connect AWS User -> mySQL User
     - [ ] Insert Data from API onto Recipe List
     - [ ] Have a randomizer for 3 Seasonal Ingredient Recipe
     - [X] Check off list for Checkpoint #3
