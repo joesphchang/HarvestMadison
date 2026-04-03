@@ -2,7 +2,7 @@
 <c:import url="../../../taglib.jsp" /><c:import url="../../../taglib.jsp" />
 <c:set var="title" value="Error 404" />
 
-<c:import url="/WEB-INF/jsp/fragments/header.jsp" />
+<c:import url="jsp/fragments/header.jsp" />
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
     <title>System Error 404</title>
 </head>
 <body>
-<c:import url="/WEB-INF/jsp/fragments/header.jsp" />
+<c:import url="jsp/fragments/header.jsp" />
 
 <h1>We hit an error.</h1>
 
@@ -25,6 +25,6 @@
     </c:choose>
 </p>
 
-<c:import url="/WEB-INF/jsp/fragments/footer.jsp" />
+<c:import url="jsp/fragments/footer.jsp" />
 </body>
 </html>

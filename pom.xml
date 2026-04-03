@@ -23,7 +23,6 @@
     <commons-io.version>2.11.0</commons-io.version>
     <jersey-version>2.29.1</jersey-version>
     <jackson-version>2.10.0</jackson-version>
-    <jersey-version>2.29.1</jersey-version>
     <maven-clean-version>3.1.0</maven-clean-version>
     <maven-resources-version>3.0.2</maven-resources-version>
     <maven-compiler-version>3.8.0</maven-compiler-version>
@@ -31,6 +30,7 @@
     <maven-war-version>3.2.2</maven-war-version>
     <maven-install-version>2.5.2</maven-install-version>
     <maven-deploy-version>2.8.2</maven-deploy-version>
+    <org-json-version>20170516</org-json-version>
   </properties>
 
   <dependencies>
@@ -90,9 +90,8 @@
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-      <version>20170516</version>
+      <version>${org-json-version}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
@@ -134,30 +133,25 @@
       <artifactId>jersey-container-servlet</artifactId>
       <version>${jersey-version}</version>
     </dependency>
-
-    <dependency>
-      <groupId>org.glassfish.jersey.inject</groupId>
-      <artifactId>jersey-hk2</artifactId>
-      <version>${jersey-version}</version>
-    </dependency>
   </dependencies>
 
   <build>
     <finalName>harvestmadison</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>${maven-clean-version}</version>
         </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>${maven-resources-version}</version>
         </plugin>
+
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.2</version>
+          <version>${maven-war-version}</version>
           <configuration>
             <webResources>
               <resource>
@@ -173,6 +167,7 @@
             </webResources>
           </configuration>
         </plugin>
+
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven-compiler-version}</version>
@@ -180,10 +175,6 @@
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven-surefire-version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>${maven-war-version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>

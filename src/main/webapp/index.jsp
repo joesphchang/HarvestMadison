@@ -4,9 +4,9 @@
 <c:set var="title" value="Home" />
 <!DOCTYPE html>
 <html>
-    <c:import url="WEB-INF/jsp/common/head.jsp" />
+    <c:import url="jsp/common/head.jsp" />
 <body>
-    <c:import url="WEB-INF/jsp/common/navigation.jsp" />
+    <c:import url="jsp/common/navigation.jsp" />
     <div class="container mt-4">
         <div class="row border p-4 mb-5 rounded shadow-sm align-items-center">
             <div class="col-md-5">
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <c:import url="WEB-INF/jsp/common/footer.jsp" />
+    <c:import url="jsp/common/footer.jsp" />
 </body>
 
 </html>
