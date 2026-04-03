@@ -58,6 +58,7 @@ src/main/resources/spoonacular.properties
 harvest-madison-key.pem
 harvest-madison-public.crt
 harvest-madison-csr.pem
+harvest-madison-key-rsa.pem
 src/main/.ebextensions/https-instance.config
 src/main/.ebextensions/https-instance-single.config
 src/main/.platform/httpd/conf.d/ssl.conf
