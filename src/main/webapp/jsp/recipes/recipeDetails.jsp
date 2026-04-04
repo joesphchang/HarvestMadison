@@ -25,7 +25,11 @@
         <button class="btn btn-sm btn-outline-secondary">
             <i class="far fa-star"></i> Save to Favorites
         </button>
-        <a href="<c:url value='/editRecipe' />"></a>
+        <c:choose>
+            <c:when test="${not empty sessionScope.user and sessionScope.user.id == recipe.user.id}">
+                <a href="<c:url value='/editRecipe?id=${recipe.id}' />" class="btn btn-sm btn-outline-secondary">Edit Recipe</a>
+            </c:when>
+        </c:choose>
     </div>
 
     <hr>

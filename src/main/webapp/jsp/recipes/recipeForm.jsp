@@ -21,7 +21,7 @@
 
         <div class="mb-3">
             <label class="form-label">Recipe Title</label>
-            <input type="text" name="title" class="form-control" value="${recipe.recipeName}" required>
+            <input type="text" name="recipeName" class="form-control" value="${recipe.recipeName}" required>
         </div>
 
         <div class="mb-3">

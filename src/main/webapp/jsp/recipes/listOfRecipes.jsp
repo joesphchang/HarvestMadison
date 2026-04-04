@@ -12,7 +12,7 @@
         <h2 class="mb-4">${title}</h2>
         <c:choose>
             <c:when test="${not empty sessionScope.user}">
-                <a href="<c:url value='/addRecipe' />" class="btn btn-primary">Add Recipe</a>
+                <a href="<c:url value='/addRecipe' />" class="btn btn-primary mb-4">Add Recipe</a>
             </c:when>
         </c:choose>
     </div>
