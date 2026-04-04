@@ -1,6 +1,6 @@
 <%@include file="../../taglib.jsp"%>
 <%--@elvariable id="recipe" type="com.joeychang.entity.Recipe"--%>
-<%--@elvariable id="ingredient" type="com.joeychang.entity.Ingredient"--%>
+<%--@elvariable id="ingredients" type="java.util.List<com.joeychang.entity.SeasonalIngredient>"--%>
 <c:set var="title" value="${recipe.recipeName}" />
 <html>
 <head>
@@ -21,7 +21,7 @@
 
         <div class="mb-3">
             <label class="form-label">Recipe Title</label>
-            <input type="text" name="title" class="form-control" value="${recipe.title}" required>
+            <input type="text" name="title" class="form-control" value="${recipe.recipeName}" required>
         </div>
 
         <div class="mb-3">
@@ -32,10 +32,9 @@
         <div class="mb-3">
             <label class="form-label">Seasonal Ingredient</label>
             <select name="ingredientId" class="form-select">
-                <c:forEach var="ingredient" items="${ingredient}">
-                    <option value="${ingredient.id}"
-                        ${ingredient.id == recipe.seasonalIngredient.id ? 'selected' : ''}>
-                            ${ingredient.name}
+                <c:forEach var="ingredient" items="${ingredients}">
+                    <option value="${ingredient.id}" ${ingredient.id == recipe.seasonalIngredient.id ? 'selected' : ''}>
+                        ${ingredient.seasonalIngredientName}
                     </option>
                 </c:forEach>
             </select>

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -28,7 +29,9 @@ import java.io.IOException;
         // Add new recipe
         "/addRecipe",
         // Edit an existing recipe
-        "/editRecipe"
+        "/editRecipe",
+        // Save Recipes
+        "/saveRecipe"
 })
 public class RecipeController extends HttpServlet {
 
@@ -62,7 +65,11 @@ public class RecipeController extends HttpServlet {
                 defaultView = "recipeDetails.jsp";
             } else if (path.equals("/addRecipe")) {
                 GenericDao<SeasonalIngredient> ingredientDao = new GenericDao<>(SeasonalIngredient.class);
-                req.setAttribute("ingredients", ingredientDao.getAll());
+
+                List<SeasonalIngredient> list = ingredientDao.getAll();
+                logger.info("DEBUG: Found " + list.size() + " ingredients in the database.");
+
+                req.setAttribute("ingredients", list);
                 defaultView = "recipeForm.jsp";
 
             } else if (path.equals("/editRecipe")) {
@@ -92,5 +99,52 @@ public class RecipeController extends HttpServlet {
             req.setAttribute("errorMessage", "Our chefs are having trouble in the kitchen. Please try again later.");
             req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
         }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        User sessionUser = (User) request.getSession().getAttribute("user");
+
+        if (sessionUser == null) {
+            response.sendRedirect("login");
+            return;
+        }
+
+        String recipeId = request.getParameter("recipeId");
+        String recipeName = request.getParameter("recipeName");
+        String imageURL = request.getParameter("image-url");
+        String description = request.getParameter("description");
+        int ingredientId = Integer.parseInt(request.getParameter("ingredientId"));
+
+        GenericDao<Recipe> recipeDao = new GenericDao<>(Recipe.class);
+        GenericDao<SeasonalIngredient> ingredientDao = new GenericDao<>(SeasonalIngredient.class);
+
+        SeasonalIngredient selectedIngredient = ingredientDao.getById(ingredientId);
+
+        Recipe recipe;
+        if (recipeId == null || recipeId.isEmpty()) {
+            recipe = new Recipe();
+            recipe.setUser(sessionUser);
+        } else {
+            int existingRecipeId = Integer.parseInt(recipeId);
+            recipe = recipeDao.getById(existingRecipeId);
+
+            if (recipe.getUser().getId() != sessionUser.getId()) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "Sorry, you cannot edit someone else's recipe.");
+                return;
+            }
+        }
+
+        recipe.setRecipeName(recipeName);
+        recipe.setImageURL(imageURL);
+        recipe.setDescription(description);
+        recipe.setSeasonalIngredient(selectedIngredient);
+        if (recipe.getId() == 0) {
+            recipeDao.insert(recipe);
+        } else {
+            recipeDao.update(recipe);
+        }
+
+        response.sendRedirect("recipes");
     }
 }
