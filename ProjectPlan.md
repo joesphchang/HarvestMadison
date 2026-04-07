@@ -70,15 +70,34 @@
     - [X] Check off list for Checkpoint #3
     - [X] Update weekly reflection/time log
 
-### Week 8 - 12: Authentication & Checkpoint 3
-    Focus: Security and User-Specific CRUD
-    - [X] Implement Sign-In and Sign-Up logic utilizing UserDao
-    - [ ] Implement Sign-Out story to securely terminate user sessions
-    - [ ] Checkpoint 3 Due (Week 9): Deployed app with Authentication and at least one JSP displaying DB data
-    - [ ] Create the "Personal Cookbook" functionality (CRUD operations for UserRecipe table)
-    - [ ] Implement "Favorite Recipes" functionality (Many-to-Many relationship between Users and Recipes)
+### Week 10 - Update, Login, HTTPS
+    Goal: Have user update recipe. AWS HTTPs handling. Login - Logout functionality
+    - [X] Update functionality
+    - [X] Do Checkpoint #3 Corrections
+    - [X] Login through HTTPs success
+    - [X] Logout Success
+    - [X] Update buttons within list and details page
+    - [X] Update weekly reflection/time log
 
-### Week 15 - Final Polish
-    - [ ] Final Presentation prep and recording video walk-through
-    - [ ] Code quality check and final documentation updates
-    - [ ] Weekly journal entry
+### Week 11 - The final CRUD
+    Goal: This week is to finalize full CRUD 
+    - [ ] Finish up Add functionality
+    - [ ] Begin API Call functionality and recieving information
+    - [ ] Get a boilerplate for About Page
+    - [ ] Finalize Home Page Layout
+    - [ ] Update weekly reflection/time log 
+
+### Week 12 - Cleaning up 
+    Goal: Clean up functionality and work through JavaDocs for all classes
+    - [ ] Clean up Home page
+    - [ ] Clean up List
+    - [ ] Clean up Search List
+    - [ ] Finalize Home Page
+    - [ ] Finalize About Page
+    - [ ] Update weekly reflection/time log
+
+### Week 13 - Past MVP
+    Goal: Make sure all funcationality work for MVP and excel
+    - [ ] Add in favorite functionality
+    - [ ] Finalize Recipe Details
+    - [ ] Update weekly reflection/time log 
