@@ -27,9 +27,15 @@
         </button>
         <c:choose>
             <c:when test="${not empty sessionScope.user and sessionScope.user.id == recipe.user.id}">
-                <a href="<c:url value='/editRecipe?id=${recipe.id}' />" class="btn btn-sm btn-outline-secondary">Edit Recipe</a>
+                <a href="<c:url value='/editRecipe?id=${recipe.id}' />" class="btn btn-sm btn-outline-info">Edit Recipe</a>
             </c:when>
         </c:choose>
+        <c:if test="${not empty recipe}">
+            <form action="deleteRecipe" method="post" style="display:inline;">
+                <input type="hidden" name="recipeId" value="${recipe.id}">
+                <button type="submit" class="btn btn-sm btn-outline-danger">Delete This Recipe</button>
+            </form>
+        </c:if>
     </div>
 
     <hr>

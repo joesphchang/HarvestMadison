@@ -40,6 +40,33 @@
             </select>
         </div>
 
+        <h3>Ingredients</h3>
+        <div id="ingredient-list">
+            <c:forEach var="item" items="${recipe.recipeIngredients}">
+                <div class="row mb-2">
+                    <div class="col-2">
+                        <input type="text" name="quantity" class="form-control" value="${item.quantity}">
+                    </div>
+                    <div class="col-3">
+                        <input type="text" name="unit" class="form-control" value="${item.unit}">
+                    </div>
+                    <div class="col-7">
+                        <input type="text" name="ingredientName" class="form-control" value="${item.ingredient.name}">
+                    </div>
+                </div>
+            </c:forEach>
+
+            <c:if test="${empty recipe}">
+                <c:forEach var="i" begin="1" end="10">
+                    <div class="row mb-2">
+                        <div class="col-2"><input type="text" name="quantity" class="form-control" placeholder="Qty"></div>
+                        <div class="col-3"><input type="text" name="unit" class="form-control" placeholder="Unit"></div>
+                        <div class="col-7"><input type="text" name="ingredientName" class="form-control" placeholder="Ingredient"></div>
+                    </div>
+                </c:forEach>
+            </c:if>
+        </div>
+
         <div class="mb-3">
             <label class="form-label">Instructions</label>
             <textarea name="description" class="form-control" rows="5">${recipe.description}</textarea>
