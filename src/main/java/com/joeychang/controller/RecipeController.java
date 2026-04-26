@@ -1,11 +1,9 @@
 package com.joeychang.controller;
 
-import com.joeychang.entity.Ingredient;
-import com.joeychang.entity.Recipe;
-import com.joeychang.entity.RecipeIngredient;
-import com.joeychang.entity.SeasonalIngredient;
-import com.joeychang.entity.User;
+import com.joeychang.entity.*;
 import com.joeychang.persistence.GenericDao;
+import com.joeychang.persistence.SpoonacularDao;
+import com.joeychang.utilities.PropertiesLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * The type Recipe controller.
@@ -29,7 +28,7 @@ import java.util.List;
         "/saveRecipe",
         "/deleteRecipe"
 })
-public class RecipeController extends HttpServlet {
+public class RecipeController extends HttpServlet implements PropertiesLoader {
 
     private static final Logger logger = LogManager.getLogger(RecipeController.class);
     private final String JSP = "/jsp/recipes/";
@@ -39,17 +38,28 @@ public class RecipeController extends HttpServlet {
         GenericDao<Recipe> recipeDao = new GenericDao<>(Recipe.class);
         String path = req.getServletPath();
         String defaultView = "listOfRecipes.jsp";
-
+        String apiKey = "";
+        try {
+            Properties properties = loadProperties("/spoonacular.properties");
+            apiKey = properties.getProperty("spoonacular.api.key");
+        } catch (Exception e) {
+            logger.error("Could not load API key for search", e);
+        }
         logger.debug("Entering doGet for path: {}", path);
 
         try {
             if (path.equals("/search")) {
                 String searchTerm = req.getParameter("searchTerm");
-                if (searchTerm != null && !searchTerm.trim().isEmpty()) {
-                    req.setAttribute("recipes", recipeDao.findByPropertyLike("recipeName", searchTerm));
-                }
-                defaultView = "searchRecipeResults.jsp";
 
+                if (searchTerm != null && !searchTerm.trim().isEmpty()) {
+
+                    req.setAttribute("recipes", recipeDao.findByPropertyLike("recipeName", searchTerm));
+                    SpoonacularDao spoonDao = new SpoonacularDao();
+                    List<SpoonacularRecipe> apiResults = spoonDao.searchRecipes(searchTerm, apiKey);
+                    req.setAttribute("apiRecipes", apiResults);
+                }
+
+                defaultView = "searchRecipeResults.jsp";
             } else if (path.equals("/recipeDetails")) {
                 String id = req.getParameter("id");
                 int recipeId = Integer.parseInt(id);

@@ -18,9 +18,9 @@ class SpoonacularDaoTest implements PropertiesLoader {
         String apiKey = properties.getProperty("spoonacular.api.key");
 
         SpoonacularDao dao = new SpoonacularDao();
-        SpoonacularRecipe recipe = dao.getSpoonacularRecipeById(apiKey);
+        SpoonacularRecipe recipe = dao.getSpoonacularRecipeById(636874, apiKey);
 
         assertNotNull(recipe);
-        assertEquals("Cauliflower, Anchovies and Tomatoes", recipe.getTitle());
+        assertEquals("Candy Cane Chocolate Marshmallows", recipe.getTitle());
     }
 }

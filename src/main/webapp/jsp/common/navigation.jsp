@@ -17,7 +17,10 @@
                 <a class="nav-link" href="<c:url value='/home' />">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/recipes' />">Recipes</a>
+                <a class="nav-link" href="<c:url value='/recipes' />">Community Recipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<c:url value='/globalRecipes' />">Global Recipes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value='/about' />">About</a>

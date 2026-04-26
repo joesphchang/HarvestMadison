@@ -20,6 +20,12 @@ public class SpoonacularRecipe{
 	@JsonProperty("title")
 	private String title;
 
+	@JsonProperty("vegetarian")
+	private boolean vegetarian;
+
+	@JsonProperty("readyInMinutes")
+	private int readyInMinutes;
+
 	@JsonProperty("extendedIngredients")
 	private List<ExtendedIngredientsItem> extendedIngredients;
 
@@ -93,6 +99,42 @@ public class SpoonacularRecipe{
 	 */
 	public String getTitle(){
 		return title;
+	}
+
+	/**
+	 * Is vegetarian boolean.
+	 *
+	 * @return the boolean
+	 */
+	public boolean isVegetarian() {
+		return vegetarian;
+	}
+
+	/**
+	 * Sets vegetarian.
+	 *
+	 * @param vegetarian the vegetarian
+	 */
+	public void setVegetarian(boolean vegetarian) {
+		this.vegetarian = vegetarian;
+	}
+
+	/**
+	 * Gets ready in minutes.
+	 *
+	 * @return the ready in minutes
+	 */
+	public int getReadyInMinutes() {
+		return readyInMinutes;
+	}
+
+	/**
+	 * Sets ready in minutes.
+	 *
+	 * @param readyInMinutes the ready in minutes
+	 */
+	public void setReadyInMinutes(int readyInMinutes) {
+		this.readyInMinutes = readyInMinutes;
 	}
 
 	/**

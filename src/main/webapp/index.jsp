@@ -42,6 +42,30 @@
                 </c:if>
             </div>
         </div>
+
+        <div class="row border p-5 mt-5 rounded shadow-sm align-items-center bg-white mb-5">
+            <div class="col-md-5 text-center">
+                <img src="images/home-hero.jpg"
+                     class="img-fluid rounded border shadow-sm"
+                     alt="Fresh Seedlings"
+                     style="max-height: 250px; width: 100%; object-fit: cover;">
+            </div>
+
+            <div class="col-md-7 ps-md-5">
+                <h6 class="text-muted text-uppercase mb-2">Our Mission</h6>
+                <h2 class="fw-bold mb-3">Harvest Madison</h2>
+                <p class="text-secondary" style="line-height: 1.7;">
+                    Harvest Madison is a community-driven platform dedicated to connecting the people of Madison with the
+                    flavors of the season. By integrating local farm-fresh ingredients with a robust global recipe
+                    database, this application empowers home cooks to support local agriculture while exploring
+                    culinary traditions from around the world.
+                </p>
+                <p class="text-secondary small italic">
+                    Built for the community, by the community—celebrating the intersection of local food and modern technology.
+                </p>
+                <a href="about" class="btn btn-outline-dark btn-sm px-4 mt-2">Read the Full Story</a>
+            </div>
+        </div>
     </div>
     <c:import url="jsp/common/footer.jsp" />
 </body>
