@@ -68,6 +68,12 @@ public class SpoonacularDao {
         }
     }
 
+    /**
+     * Gets random recipes.
+     *
+     * @param apiKey the api key
+     * @return the random recipes
+     */
     public List<SpoonacularRecipe> getRandomRecipes(String apiKey) {
         Client client = ClientBuilder.newClient();
         String url = "https://api.spoonacular.com/recipes/random?number=10&apiKey=" + apiKey;

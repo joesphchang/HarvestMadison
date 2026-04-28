@@ -118,3 +118,16 @@ Project Checkpoint #3
 - ~~Add your deployed app url to the indie project list,~~
 - ~~Update your time log and project plan, AND~~
 ~~- Create an issue on your repo and tag me when it's ready for review.~~
+
+### April 27th, 2026 "Are we there yet?"
+
+After a week of rest and not messing with the code, I spent this past weekend configuring my files to work with Spoonacular.
+I've added methods to "Add" and "Delete" within the application as a user. I've also configured the application to work with
+Spoonacular, creating seperate sections that reads the data from Spoonacular in tabs like "Global Recipes" and split my
+user data within "Community Recipes." Within the Search function, I've added a way for users to search within the community
+recipes but also the global recipes seperating both global and local data. I've also added a maximum on data reach so the 
+User isn't getting 50+ different types of Recipes. I've also added a about page and about section within my web-page as a 
+last minute edit to finalize my V1 Application. 
+
+This week to end my V1 of Harvest Madison, I plan on creating more JUnit testing for Spoonacular and the rest of my data
+integrity like Ingredients and Recipe Ingredients. Cleaning up bits and pieces of my web-page to be ready for presentation. 
