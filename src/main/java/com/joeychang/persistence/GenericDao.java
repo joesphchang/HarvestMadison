@@ -16,22 +16,20 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
- * The type Generic dao.
+ * Generic DAO that handles common database operations for any entity type.
+ * Uses the Hibernate Criteria API so we're not writing raw SQL everywhere.
  *
- * @param <T> the type parameter
+ * @param <T> the entity type this DAO operates on
  */
 public class GenericDao<T> implements PropertiesLoader {
 
     private Class<T> type;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-    // Properties
-    //    private Properties properties;
-
     /**
      * Instantiates a new Generic dao.
      *
-     * @param type the type
+     * @param type the entity class this DAO will work with
      */
     public GenericDao(Class<T> type) {
         this.type = type;
@@ -46,7 +44,6 @@ public class GenericDao<T> implements PropertiesLoader {
 
     private Session getSession() {
         return SessionFactoryProvider.getSessionFactory().openSession();
-
     }
 
     /**
@@ -62,7 +59,6 @@ public class GenericDao<T> implements PropertiesLoader {
         List<T> list = session.createQuery(query).getResultList();
         session.close();
         return list;
-
     }
 
     /**
@@ -122,7 +118,6 @@ public class GenericDao<T> implements PropertiesLoader {
         session.close();
     }
 
-
     /**
      * Find by property equal list.
      *
@@ -156,6 +151,84 @@ public class GenericDao<T> implements PropertiesLoader {
         Root<T> root = query.from(type);
         Expression<String> propertyPath = root.get(propertyName);
         query.where(builder.like(propertyPath, "%" + value + "%"));
+
+        List<T> list = session.createQuery(query).getResultList();
+        session.close();
+        return list;
+    }
+
+    /**
+     * Gets by id with collection.
+     *
+     * @param id             the id
+     * @param collectionName the collection name
+     * @return the by id with collection
+     */
+    public T getByIdWithCollection(int id, String collectionName) {
+        Session session = getSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        root.fetch(collectionName);
+        query.where(builder.equal(root.get("id"), id));
+        T entity = session.createQuery(query).uniqueResult();
+        session.close();
+        return entity;
+    }
+
+    /**
+     * Finds entities where a given value falls within a numeric range defined by two properties.
+     * For example, find a SeasonalIngredient where currentMonth >= startDate AND currentMonth <= endDate.
+     *
+     * @param startProp the name of the lower bound property on the entity
+     * @param endProp   the name of the upper bound property on the entity
+     * @param value     the value to check against the range
+     * @return list of matching entities
+     */
+    public List<T> findByPropertyBetween(String startProp, String endProp, int value) {
+        Session session = getSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+
+        query.where(
+                builder.and(
+                        builder.lessThanOrEqualTo(root.get(startProp), value),
+                        builder.greaterThanOrEqualTo(root.get(endProp), value)
+                )
+        );
+
+        List<T> list = session.createQuery(query).getResultList();
+        session.close();
+        return list;
+    }
+
+    /**
+     * Finds entities whose date range wraps around the new year and includes the given month.
+     * These are rows where startDate > endDate (e.g. startDate=11, endDate=2 for Nov–Feb).
+     *
+     * The match condition is: currentMonth >= startDate OR currentMonth < endDate,
+     * which covers both ends of the wraparound.
+     *
+     * @param currentMonth the current month (1–12)
+     * @return list of matching entities
+     */
+    public List<T> findWraparoundByMonth(int currentMonth) {
+        Session session = getSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+
+        query.where(
+                builder.and(
+                        // Only consider rows where the range actually wraps (startDate > endDate)
+                        builder.greaterThan(root.get("startDate"), root.get("endDate")),
+                        builder.or(
+                                builder.greaterThanOrEqualTo(root.get("startDate"), currentMonth),
+                                builder.lessThan(root.get("endDate"), currentMonth)
+                        )
+                )
+        );
 
         List<T> list = session.createQuery(query).getResultList();
         session.close();

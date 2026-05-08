@@ -81,19 +81,19 @@
 
 ### Week 11 - The final CRUD
     Goal: This week is to finalize full CRUD 
-    - [ ] Finish up Add functionality
-    - [ ] Begin API Call functionality and recieving information
-    - [ ] Get a boilerplate for About Page
-    - [ ] Finalize Home Page Layout
+    - [X] Finish up Add functionality
+    - [X] Begin API Call functionality and recieving information
+    - [X] Get a boilerplate for About Page
+    - [X] Finalize Home Page Layout
     - [ ] Update weekly reflection/time log 
 
 ### Week 12 - Cleaning up 
     Goal: Clean up functionality and work through JavaDocs for all classes
-    - [ ] Clean up Home page
-    - [ ] Clean up List
-    - [ ] Clean up Search List
-    - [ ] Finalize Home Page
-    - [ ] Finalize About Page
+    - [X] Clean up Home page
+    - [X] Clean up List
+    - [X] Clean up Search List
+    - [X] Finalize Home Page
+    - [X] Finalize About Page
     - [ ] Update weekly reflection/time log
 
 ### Week 13 - Past MVP

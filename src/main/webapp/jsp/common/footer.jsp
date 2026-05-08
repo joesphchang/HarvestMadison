@@ -1,5 +1,5 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="../../taglib.jsp"%>
-<%@ page import="java.util.Date" %>
 <!DOCTYPE html>
 <html>
 <body>
@@ -8,7 +8,7 @@
     <div class="container text-center">
         <div class="row">
             <div class="col-md-4 text-md-start">
-                <span class="text-muted">&copy; <%= java.util.Calendar.getInstance().get(java.util.Calendar.YEAR) %> Harvest Madison</span>
+                <span class="text-muted">&copy; <fmt:formatDate value="${now}" pattern="yyyy" /> Harvest Madison</span>
             </div>
             <div class="col-md-4">
                 <ul class="list-inline mb-0">
