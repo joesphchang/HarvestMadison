@@ -113,16 +113,18 @@ public class UserDaoTest {
 //    @Test
 //    void deleteUserWithRecipe() {
 //        User user = userDao.getById(1);
-//        assertNotNull(user);
+//        assertNotNull(user, "User should exist before deletion");
+//
 //        int userId = user.getId();
 //
-//        int countBefore = recipeDao.findByPropertyEqual("user", user).size();
-//        assertTrue(countBefore > 0, "User 1 should have recipes in this dump");
+//        List<Recipe> recipesBefore = recipeDao.findByPropertyEqual("user", user);
+//        assertTrue(recipesBefore.size() > 0, "User 1 should have recipes in this dump");
+//
 //        userDao.delete(user);
 //
-//        assertNull(userDao.getById(userId));
+//        assertNull(userDao.getById(userId), "User should be deleted");
 //
-//        List<Recipe> orphanedRecipes = recipeDao.findByPropertyEqual("user", user);
-//        assertEquals(0, orphanedRecipes.size(), "Recipes associated with this user should be gone");
+//        List<Recipe> recipesAfter = recipeDao.findByPropertyEqual("user", user);
+//        assertEquals(0, recipesAfter.size(), "Recipes belonging to deleted user should also be deleted");
 //    }
 }

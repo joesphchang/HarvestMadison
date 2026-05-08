@@ -29,8 +29,6 @@ Madison residents, and save their favorite seasonal finds to a personal profile.
   * Maven
 * Web Services consumed using Java
   * Spoonacular API (Recipe discovery and ingredient analysis)
-  * OpenWeatherMap API (To adjust harvest timelines based on local
-    Madison frost/weather data)
 * UI / Design
   * Bootstrap 5 
   * JSP & JSTL (Dynamic content rendering)

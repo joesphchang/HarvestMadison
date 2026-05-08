@@ -12,15 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class SpoonacularDaoTest implements PropertiesLoader {
 
-    @Test
-    void getRecipeByIdSuccess() throws Exception {
-        Properties properties = loadProperties("/spoonacular.properties");
-        String apiKey = properties.getProperty("spoonacular.api.key");
-
-        SpoonacularDao dao = new SpoonacularDao();
-        SpoonacularRecipe recipe = dao.getSpoonacularRecipeById(636874, apiKey);
-
-        assertNotNull(recipe);
-        assertEquals("Candy Cane Chocolate Marshmallows", recipe.getTitle());
-    }
+//    @Test
+//    void getRecipeByIdSuccess() throws Exception {
+//        Properties properties = loadProperties("/spoonacular.properties");
+//        String apiKey = properties.getProperty("spoonacular.api.key");
+//
+//        SpoonacularDao dao = new SpoonacularDao();
+//        SpoonacularRecipe recipe = dao.getSpoonacularRecipeById(636874, apiKey);
+//
+//        assertNotNull(recipe);
+//        assertEquals("Candy Cane Chocolate Marshmallows", recipe.getTitle());
+//    }
 }

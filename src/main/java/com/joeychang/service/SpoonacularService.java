@@ -22,7 +22,7 @@ public class SpoonacularService implements PropertiesLoader {
     // --- Cache for random recipes ---
     private static List<SpoonacularRecipe> cachedRandomRecipes = null;
     private static long cacheTimestamp = 0;
-    private static final long CACHE_TTL_MS = 24 * 60 * 60 * 1000L
+    private static final long CACHE_TTL_MS = 24 * 60 * 60 * 1000L;
 
     /**
      * Instantiates a new Spoonacular service.

@@ -40,7 +40,6 @@ public class Database {
     }
 
     /** load the properties file containing the driver, connection url, userid and pwd.
-     * TODO this would be improved by using properties loader interface provided in adv java
      */
     private void loadProperties() {
         properties = new Properties();
