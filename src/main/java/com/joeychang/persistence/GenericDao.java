@@ -98,8 +98,8 @@ public class GenericDao<T> implements PropertiesLoader {
         Transaction transaction = session.beginTransaction();
 
         session.persist(entity);
-        transaction.commit();
         int id = (int) session.getIdentifier(entity);
+        transaction.commit();
 
         session.close();
         return id;

@@ -48,7 +48,7 @@ public class MainController extends HttpServlet {
         // Grab the current month (1–12) to match against seasonal ingredient date ranges
         int currentMonth = java.time.LocalDate.now().getMonthValue();
 
-        // Ask the database for a seasonal ingredient whose range covers the current month.
+        // Asking the Database for a seasonal ingredient whose range covers the current month.
         // This handles normal ranges. The year-wrap case
         // needs a second query since a single range check can't handle the rollover.
         SeasonalIngredient currentSeason = null;
